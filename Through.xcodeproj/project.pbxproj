@@ -14,6 +14,7 @@
 		3F06CF0F19388F73006B8EC0 /* THRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F06CF0E19388F73006B8EC0 /* THRAppDelegate.m */; };
 		3F06CF1519388F7B006B8EC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F06CF1119388F7B006B8EC0 /* main.m */; };
 		3F06CF1719388F80006B8EC0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F06CF1919388F80006B8EC0 /* InfoPlist.strings */; };
+		779F853A7D4C4B3D8FFCF522 /* libPods-Through.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		3F06CF1219388F7B006B8EC0 /* Through-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Through-Info.plist"; path = "Supporting/Through-Info.plist"; sourceTree = "<group>"; };
 		3F06CF1319388F7B006B8EC0 /* Through-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Through-Prefix.pch"; path = "Supporting/Through-Prefix.pch"; sourceTree = "<group>"; };
 		3F06CF1819388F80006B8EC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Through.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Through.xcconfig"; path = "Pods/Pods-Through.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +42,7 @@
 				3F06CEE019388EE8006B8EC0 /* CoreGraphics.framework in Frameworks */,
 				3F06CEE219388EE8006B8EC0 /* UIKit.framework in Frameworks */,
 				3F06CEDE19388EE8006B8EC0 /* Foundation.framework in Frameworks */,
+				779F853A7D4C4B3D8FFCF522 /* libPods-Through.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +55,7 @@
 				3F06CEE319388EE8006B8EC0 /* Through */,
 				3F06CEDC19388EE8006B8EC0 /* Frameworks */,
 				3F06CEDB19388EE8006B8EC0 /* Products */,
+				D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +74,7 @@
 				3F06CEDF19388EE8006B8EC0 /* CoreGraphics.framework */,
 				3F06CEE119388EE8006B8EC0 /* UIKit.framework */,
 				3F06CEF619388EE8006B8EC0 /* XCTest.framework */,
+				BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F06CF0619388EE8006B8EC0 /* Build configuration list for PBXNativeTarget "Through" */;
 			buildPhases = (
+				41C4DDAF0C6441EE8A4EA7FF /* Check Pods Manifest.lock */,
 				3F06CED619388EE8006B8EC0 /* Sources */,
 				3F06CED719388EE8006B8EC0 /* Frameworks */,
 				3F06CED819388EE8006B8EC0 /* Resources */,
+				07BD0E17F03C4B669D2B24FF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +169,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07BD0E17F03C4B669D2B24FF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Through-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41C4DDAF0C6441EE8A4EA7FF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F06CED619388EE8006B8EC0 /* Sources */ = {
@@ -219,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -251,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -259,26 +300,32 @@
 		};
 		3F06CF0719388EE8006B8EC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Through/Supporting/Through-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4B22B1FB-DAA6-4E18-98D5-D71B3246DE93";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		3F06CF0819388EE8006B8EC0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Through/Supporting/Through-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1D9A1C8C-6156-428E-A158-EA6534530340";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -302,6 +349,7 @@
 				3F06CF0819388EE8006B8EC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
