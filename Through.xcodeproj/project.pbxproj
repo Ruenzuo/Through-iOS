@@ -14,7 +14,6 @@
 		3F06CF0F19388F73006B8EC0 /* THRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F06CF0E19388F73006B8EC0 /* THRAppDelegate.m */; };
 		3F06CF1519388F7B006B8EC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F06CF1119388F7B006B8EC0 /* main.m */; };
 		3F06CF1719388F80006B8EC0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F06CF1919388F80006B8EC0 /* InfoPlist.strings */; };
-		3F075546193898F600AF1C4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F075545193898F600AF1C4D /* Parse.framework */; };
 		3F0755481938991B00AF1C4D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755471938991B00AF1C4D /* AudioToolbox.framework */; };
 		3F07554A1938992100AF1C4D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755491938992100AF1C4D /* CFNetwork.framework */; };
 		3F07554C1938993000AF1C4D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F07554B1938993000AF1C4D /* CoreLocation.framework */; };
@@ -25,6 +24,15 @@
 		3F0755561938995100AF1C4D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755551938995100AF1C4D /* StoreKit.framework */; };
 		3F0755581938995700AF1C4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755571938995700AF1C4D /* SystemConfiguration.framework */; };
 		3F07555B1938999B00AF1C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F07555A1938999B00AF1C4D /* Main.storyboard */; };
+		3F07556119389B9E00AF1C4D /* THRTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556019389B9E00AF1C4D /* THRTestingViewController.m */; };
+		3F07556619389D4900AF1C4D /* THRAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556519389D4900AF1C4D /* THRAPIManager.m */; };
+		3F07556919389D5D00AF1C4D /* THRNetworkingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556819389D5D00AF1C4D /* THRNetworkingHelper.m */; };
+		3F0755741938B74D00AF1C4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755731938B74D00AF1C4D /* Parse.framework */; };
+		3F0755771938B75400AF1C4D /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0755761938B75400AF1C4D /* OAuthCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F07557A1938B78700AF1C4D /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0755791938B78700AF1C4D /* OAuth+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F07557D1938BA9200AF1C4D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07557C1938BA9200AF1C4D /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F0755801938CB5900AF1C4D /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07557F1938CB5900AF1C4D /* TWSignedRequest.m */; };
+		3F7373D71938D9340062462F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F07555C19389A3D00AF1C4D /* Social.framework */; };
 		779F853A7D4C4B3D8FFCF522 /* libPods-Through.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +49,6 @@
 		3F06CF1219388F7B006B8EC0 /* Through-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Through-Info.plist"; path = "Supporting/Through-Info.plist"; sourceTree = "<group>"; };
 		3F06CF1319388F7B006B8EC0 /* Through-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Through-Prefix.pch"; path = "Supporting/Through-Prefix.pch"; sourceTree = "<group>"; };
 		3F06CF1819388F80006B8EC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3F075545193898F600AF1C4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = External/Parse.framework; sourceTree = SOURCE_ROOT; };
 		3F0755471938991B00AF1C4D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3F0755491938992100AF1C4D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3F07554B1938993000AF1C4D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -53,6 +60,22 @@
 		3F0755571938995700AF1C4D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F07555A1938999B00AF1C4D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main.storyboard; sourceTree = "<group>"; };
 		3F07555C19389A3D00AF1C4D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		3F07555F19389B9E00AF1C4D /* THRTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRTestingViewController.h; path = Controllers/THRTestingViewController.h; sourceTree = "<group>"; };
+		3F07556019389B9E00AF1C4D /* THRTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRTestingViewController.m; path = Controllers/THRTestingViewController.m; sourceTree = "<group>"; };
+		3F07556419389D4900AF1C4D /* THRAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRAPIManager.h; path = Managers/THRAPIManager.h; sourceTree = "<group>"; };
+		3F07556519389D4900AF1C4D /* THRAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRAPIManager.m; path = Managers/THRAPIManager.m; sourceTree = "<group>"; };
+		3F07556719389D5D00AF1C4D /* THRNetworkingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRNetworkingHelper.h; path = Helpers/THRNetworkingHelper.h; sourceTree = "<group>"; };
+		3F07556819389D5D00AF1C4D /* THRNetworkingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRNetworkingHelper.m; path = Helpers/THRNetworkingHelper.m; sourceTree = "<group>"; };
+		3F07556C19389DA900AF1C4D /* Definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Definitions.h; path = Definitions/Definitions.h; sourceTree = "<group>"; };
+		3F0755731938B74D00AF1C4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = External/Parse/Parse.framework; sourceTree = SOURCE_ROOT; };
+		3F0755751938B75400AF1C4D /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthCore.h; path = External/OAuthCore/OAuthCore.h; sourceTree = SOURCE_ROOT; };
+		3F0755761938B75400AF1C4D /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthCore.m; path = External/OAuthCore/OAuthCore.m; sourceTree = SOURCE_ROOT; };
+		3F0755781938B78700AF1C4D /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OAuth+Additions.h"; path = "External/OAuthCore/OAuth+Additions.h"; sourceTree = SOURCE_ROOT; };
+		3F0755791938B78700AF1C4D /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OAuth+Additions.m"; path = "External/OAuthCore/OAuth+Additions.m"; sourceTree = SOURCE_ROOT; };
+		3F07557B1938BA9200AF1C4D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "External/OAuthCore/NSData+Base64.h"; sourceTree = SOURCE_ROOT; };
+		3F07557C1938BA9200AF1C4D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "External/OAuthCore/NSData+Base64.m"; sourceTree = SOURCE_ROOT; };
+		3F07557E1938CB5900AF1C4D /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWSignedRequest.h; path = External/OAuthCore/TWSignedRequest.h; sourceTree = SOURCE_ROOT; };
+		3F07557F1938CB5900AF1C4D /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWSignedRequest.m; path = External/OAuthCore/TWSignedRequest.m; sourceTree = SOURCE_ROOT; };
 		BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Through.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Through.xcconfig"; path = "Pods/Pods-Through.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7373D71938D9340062462F /* Social.framework in Frameworks */,
 				3F0755581938995700AF1C4D /* SystemConfiguration.framework in Frameworks */,
 				3F0755561938995100AF1C4D /* StoreKit.framework in Frameworks */,
 				3F0755541938994A00AF1C4D /* Security.framework in Frameworks */,
@@ -72,10 +96,10 @@
 				3F06CEE019388EE8006B8EC0 /* CoreGraphics.framework in Frameworks */,
 				3F07554A1938992100AF1C4D /* CFNetwork.framework in Frameworks */,
 				3F0755481938991B00AF1C4D /* AudioToolbox.framework in Frameworks */,
+				3F0755741938B74D00AF1C4D /* Parse.framework in Frameworks */,
 				3F06CEE219388EE8006B8EC0 /* UIKit.framework in Frameworks */,
 				3F06CEDE19388EE8006B8EC0 /* Foundation.framework in Frameworks */,
 				779F853A7D4C4B3D8FFCF522 /* libPods-Through.a in Frameworks */,
-				3F075546193898F600AF1C4D /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +151,11 @@
 			isa = PBXGroup;
 			children = (
 				3F06CF0C19388F11006B8EC0 /* Application */,
+				3F07555E19389B4700AF1C4D /* Controllers */,
+				3F07556A19389D7500AF1C4D /* Definitions */,
+				3F07556319389CF800AF1C4D /* Helpers */,
 				3F06CEEF19388EE8006B8EC0 /* Images.xcassets */,
+				3F07556219389CD700AF1C4D /* Managers */,
 				3F06CEE419388EE8006B8EC0 /* Supporting */,
 				3F0755591938997A00AF1C4D /* Views */,
 			);
@@ -157,7 +185,8 @@
 		3F075544193898C600AF1C4D /* External */ = {
 			isa = PBXGroup;
 			children = (
-				3F075545193898F600AF1C4D /* Parse.framework */,
+				3F0755721938B74400AF1C4D /* Parse */,
+				3F0755711938B71E00AF1C4D /* OAuthCore */,
 			);
 			name = External;
 			path = Through;
@@ -169,6 +198,64 @@
 				3F07555A1938999B00AF1C4D /* Main.storyboard */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		3F07555E19389B4700AF1C4D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F07555F19389B9E00AF1C4D /* THRTestingViewController.h */,
+				3F07556019389B9E00AF1C4D /* THRTestingViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3F07556219389CD700AF1C4D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3F07556419389D4900AF1C4D /* THRAPIManager.h */,
+				3F07556519389D4900AF1C4D /* THRAPIManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		3F07556319389CF800AF1C4D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3F07556719389D5D00AF1C4D /* THRNetworkingHelper.h */,
+				3F07556819389D5D00AF1C4D /* THRNetworkingHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		3F07556A19389D7500AF1C4D /* Definitions */ = {
+			isa = PBXGroup;
+			children = (
+				3F07556C19389DA900AF1C4D /* Definitions.h */,
+			);
+			name = Definitions;
+			sourceTree = "<group>";
+		};
+		3F0755711938B71E00AF1C4D /* OAuthCore */ = {
+			isa = PBXGroup;
+			children = (
+				3F07557E1938CB5900AF1C4D /* TWSignedRequest.h */,
+				3F07557F1938CB5900AF1C4D /* TWSignedRequest.m */,
+				3F07557B1938BA9200AF1C4D /* NSData+Base64.h */,
+				3F07557C1938BA9200AF1C4D /* NSData+Base64.m */,
+				3F0755781938B78700AF1C4D /* OAuth+Additions.h */,
+				3F0755791938B78700AF1C4D /* OAuth+Additions.m */,
+				3F0755751938B75400AF1C4D /* OAuthCore.h */,
+				3F0755761938B75400AF1C4D /* OAuthCore.m */,
+			);
+			name = OAuthCore;
+			sourceTree = "<group>";
+		};
+		3F0755721938B74400AF1C4D /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				3F0755731938B74D00AF1C4D /* Parse.framework */,
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +358,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F0755801938CB5900AF1C4D /* TWSignedRequest.m in Sources */,
 				3F06CF1519388F7B006B8EC0 /* main.m in Sources */,
+				3F07556619389D4900AF1C4D /* THRAPIManager.m in Sources */,
+				3F07556919389D5D00AF1C4D /* THRNetworkingHelper.m in Sources */,
 				3F06CF0F19388F73006B8EC0 /* THRAppDelegate.m in Sources */,
+				3F0755771938B75400AF1C4D /* OAuthCore.m in Sources */,
+				3F07557D1938BA9200AF1C4D /* NSData+Base64.m in Sources */,
+				3F07556119389B9E00AF1C4D /* THRTestingViewController.m in Sources */,
+				3F07557A1938B78700AF1C4D /* OAuth+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +465,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
+					"$(PROJECT_DIR)/External/Parse",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
@@ -391,6 +486,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
+					"$(PROJECT_DIR)/External/Parse",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
