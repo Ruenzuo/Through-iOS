@@ -5,6 +5,42 @@ PODS:
     - NSData+Base64 (~> 1.0)
   - Facebook-iOS-SDK (3.14.1):
     - Bolts
+  - FXForms (1.1.6)
+  - libextobjc (0.4):
+    - libextobjc/EXTADT
+    - libextobjc/EXTConcreteProtocol
+    - libextobjc/EXTKeyPathCoding
+    - libextobjc/EXTNil
+    - libextobjc/EXTSafeCategory
+    - libextobjc/EXTScope
+    - libextobjc/EXTSelectorChecking
+    - libextobjc/EXTSynthesize
+    - libextobjc/NSInvocation+EXT
+    - libextobjc/NSMethodSignature+EXT
+    - libextobjc/RuntimeExtensions
+    - libextobjc/UmbrellaHeader
+  - libextobjc/EXTADT (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSInvocation+EXT (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSMethodSignature+EXT (0.4):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4)
+  - libextobjc/UmbrellaHeader (0.4)
   - NSData+Base64 (1.0.0)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI
@@ -13,6 +49,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.3.1)
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
+  - RegExCategories (1.0)
   - SimpleAuth/Core (0.3.2):
     - CMDQueryStringSerialization
     - ReactiveCocoa
@@ -22,15 +59,21 @@ PODS:
 
 DEPENDENCIES:
   - Facebook-iOS-SDK (~> 3.14.1)
-  - SimpleAuth/Twitter (~> 0.3)
+  - FXForms (~> 1.1.6)
+  - libextobjc (~> 0.4.0)
+  - RegExCategories (~> 1.0.0)
+  - SimpleAuth/Twitter (~> 0.3.2)
 
 SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   CMDQueryStringSerialization: e53570ccbce6004acba30b1c1210e254644cdb92
   cocoa-oauth: 418c70e6ce4130fa7ebdf05232018c8f391030d8
   Facebook-iOS-SDK: e9b3d5ac54ee3e5e693f4eef470b97911b3d076d
+  FXForms: 9387c60ee6f3e1c75e0f8998012acc1ce0ad8d0a
+  libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
   NSData+Base64: aae92a2e3f0bd88b29fe6093551ded3f5c062548
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
+  RegExCategories: a6410301023ff81bd047c05fd8691d24ca5c7ea9
   SimpleAuth: ae531fc2986b34e6fb6975885b0e42cf86bcc918
 
 COCOAPODS: 0.33.1

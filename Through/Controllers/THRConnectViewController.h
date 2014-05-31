@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THRTestingViewController : UIViewController
-
-- (IBAction)testReverseAuth:(id)sender;
+@interface THRConnectViewController : UITableViewController
 
 @end

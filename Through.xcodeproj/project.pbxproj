@@ -23,12 +23,16 @@
 		3F0755541938994A00AF1C4D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755531938994A00AF1C4D /* Security.framework */; };
 		3F0755561938995100AF1C4D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755551938995100AF1C4D /* StoreKit.framework */; };
 		3F0755581938995700AF1C4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755571938995700AF1C4D /* SystemConfiguration.framework */; };
-		3F07555B1938999B00AF1C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F07555A1938999B00AF1C4D /* Main.storyboard */; };
-		3F07556119389B9E00AF1C4D /* THRTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556019389B9E00AF1C4D /* THRTestingViewController.m */; };
+		3F07556119389B9E00AF1C4D /* THRConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556019389B9E00AF1C4D /* THRConnectViewController.m */; };
 		3F07556619389D4900AF1C4D /* THRAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556519389D4900AF1C4D /* THRAPIManager.m */; };
 		3F07556919389D5D00AF1C4D /* THRNetworkingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07556819389D5D00AF1C4D /* THRNetworkingHelper.m */; };
 		3F0755741938B74D00AF1C4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0755731938B74D00AF1C4D /* Parse.framework */; };
 		3F7373D71938D9340062462F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F07555C19389A3D00AF1C4D /* Social.framework */; };
+		3FC6B5CF193A15AC00D57D1E /* THRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */; };
+		3FC6B5D0193A15DE00D57D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D2193A15DE00D57D1E /* Main.storyboard */; };
+		3FC6B5D6193A16FA00D57D1E /* THRLoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D5193A16FA00D57D1E /* THRLoginForm.m */; };
+		3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */; };
+		3FC6B5DC193A1C7F00D57D1E /* THRRegistrationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5DB193A1C7F00D57D1E /* THRRegistrationForm.m */; };
 		779F853A7D4C4B3D8FFCF522 /* libPods-Through.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */; };
 /* End PBXBuildFile section */
 
@@ -54,16 +58,24 @@
 		3F0755531938994A00AF1C4D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F0755551938995100AF1C4D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3F0755571938995700AF1C4D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		3F07555A1938999B00AF1C4D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Views/Main.storyboard; sourceTree = "<group>"; };
 		3F07555C19389A3D00AF1C4D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		3F07555F19389B9E00AF1C4D /* THRTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRTestingViewController.h; path = Controllers/THRTestingViewController.h; sourceTree = "<group>"; };
-		3F07556019389B9E00AF1C4D /* THRTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRTestingViewController.m; path = Controllers/THRTestingViewController.m; sourceTree = "<group>"; };
+		3F07555F19389B9E00AF1C4D /* THRConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRConnectViewController.h; path = Controllers/THRConnectViewController.h; sourceTree = "<group>"; };
+		3F07556019389B9E00AF1C4D /* THRConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRConnectViewController.m; path = Controllers/THRConnectViewController.m; sourceTree = "<group>"; };
 		3F07556419389D4900AF1C4D /* THRAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRAPIManager.h; path = Managers/THRAPIManager.h; sourceTree = "<group>"; };
 		3F07556519389D4900AF1C4D /* THRAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRAPIManager.m; path = Managers/THRAPIManager.m; sourceTree = "<group>"; };
 		3F07556719389D5D00AF1C4D /* THRNetworkingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRNetworkingHelper.h; path = Helpers/THRNetworkingHelper.h; sourceTree = "<group>"; };
 		3F07556819389D5D00AF1C4D /* THRNetworkingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRNetworkingHelper.m; path = Helpers/THRNetworkingHelper.m; sourceTree = "<group>"; };
 		3F07556C19389DA900AF1C4D /* Definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Definitions.h; path = Definitions/Definitions.h; sourceTree = "<group>"; };
 		3F0755731938B74D00AF1C4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = External/Parse/Parse.framework; sourceTree = SOURCE_ROOT; };
+		3FC6B5CD193A15AC00D57D1E /* THRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLoginViewController.h; path = Controllers/THRLoginViewController.h; sourceTree = "<group>"; };
+		3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRLoginViewController.m; path = Controllers/THRLoginViewController.m; sourceTree = "<group>"; };
+		3FC6B5D1193A15DE00D57D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3FC6B5D4193A16FA00D57D1E /* THRLoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLoginForm.h; path = Models/THRLoginForm.h; sourceTree = "<group>"; };
+		3FC6B5D5193A16FA00D57D1E /* THRLoginForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRLoginForm.m; path = Models/THRLoginForm.m; sourceTree = "<group>"; };
+		3FC6B5D7193A1C4900D57D1E /* THRRootForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRRootForm.h; path = Models/THRRootForm.h; sourceTree = "<group>"; };
+		3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRRootForm.m; path = Models/THRRootForm.m; sourceTree = "<group>"; };
+		3FC6B5DA193A1C7F00D57D1E /* THRRegistrationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRRegistrationForm.h; path = Models/THRRegistrationForm.h; sourceTree = "<group>"; };
+		3FC6B5DB193A1C7F00D57D1E /* THRRegistrationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRRegistrationForm.m; path = Models/THRRegistrationForm.m; sourceTree = "<group>"; };
 		BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Through.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Through.xcconfig"; path = "Pods/Pods-Through.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +156,7 @@
 				3F07556319389CF800AF1C4D /* Helpers */,
 				3F06CEEF19388EE8006B8EC0 /* Images.xcassets */,
 				3F07556219389CD700AF1C4D /* Managers */,
+				3FC6B5D3193A16D900D57D1E /* Models */,
 				3F06CEE419388EE8006B8EC0 /* Supporting */,
 				3F0755591938997A00AF1C4D /* Views */,
 			);
@@ -182,7 +195,7 @@
 		3F0755591938997A00AF1C4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F07555A1938999B00AF1C4D /* Main.storyboard */,
+				3FC6B5D2193A15DE00D57D1E /* Main.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -190,8 +203,10 @@
 		3F07555E19389B4700AF1C4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F07555F19389B9E00AF1C4D /* THRTestingViewController.h */,
-				3F07556019389B9E00AF1C4D /* THRTestingViewController.m */,
+				3FC6B5CD193A15AC00D57D1E /* THRLoginViewController.h */,
+				3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */,
+				3F07555F19389B9E00AF1C4D /* THRConnectViewController.h */,
+				3F07556019389B9E00AF1C4D /* THRConnectViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -228,6 +243,19 @@
 				3F0755731938B74D00AF1C4D /* Parse.framework */,
 			);
 			name = Parse;
+			sourceTree = "<group>";
+		};
+		3FC6B5D3193A16D900D57D1E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FC6B5D7193A1C4900D57D1E /* THRRootForm.h */,
+				3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */,
+				3FC6B5D4193A16FA00D57D1E /* THRLoginForm.h */,
+				3FC6B5D5193A16FA00D57D1E /* THRLoginForm.m */,
+				3FC6B5DA193A1C7F00D57D1E /* THRRegistrationForm.h */,
+				3FC6B5DB193A1C7F00D57D1E /* THRRegistrationForm.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F07555B1938999B00AF1C4D /* Main.storyboard in Resources */,
+				3FC6B5D0193A15DE00D57D1E /* Main.storyboard in Resources */,
 				3F06CEF019388EE8006B8EC0 /* Images.xcassets in Resources */,
 				3F06CF1719388F80006B8EC0 /* InfoPlist.strings in Resources */,
 			);
@@ -331,10 +359,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F06CF1519388F7B006B8EC0 /* main.m in Sources */,
+				3FC6B5D6193A16FA00D57D1E /* THRLoginForm.m in Sources */,
 				3F07556619389D4900AF1C4D /* THRAPIManager.m in Sources */,
 				3F07556919389D5D00AF1C4D /* THRNetworkingHelper.m in Sources */,
+				3FC6B5CF193A15AC00D57D1E /* THRLoginViewController.m in Sources */,
 				3F06CF0F19388F73006B8EC0 /* THRAppDelegate.m in Sources */,
-				3F07556119389B9E00AF1C4D /* THRTestingViewController.m in Sources */,
+				3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */,
+				3F07556119389B9E00AF1C4D /* THRConnectViewController.m in Sources */,
+				3FC6B5DC193A1C7F00D57D1E /* THRRegistrationForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +380,15 @@
 			);
 			name = InfoPlist.strings;
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		3FC6B5D2193A15DE00D57D1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FC6B5D1193A15DE00D57D1E /* en */,
+			);
+			name = Main.storyboard;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
