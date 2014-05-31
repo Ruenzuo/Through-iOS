@@ -39,20 +39,4 @@
     return _sharedManager;
 }
 
-- (void)reverseAuthTwitterForAccount:(ACAccount *)account
-                 withCompletionBlock:(ObjectCompletionBlock)completionBlock;
-{
-    [[self networkingHelper] getTwitterRequestToken:^(id object, NSError *error) {
-        if (error) {
-            completionBlock(nil, error);
-        } else {
-            [[self networkingHelper] getTwitterAccessTokenForAccount:account
-                                               withAuthorizationData:object
-                                                     completionBlock:^(id object, NSError *error) {
-                                                         completionBlock(object, error);
-                                                     }];
-        }
-    }];
-}
-
 @end

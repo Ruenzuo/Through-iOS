@@ -11,7 +11,5 @@
 @interface THRAPIManager : NSObject
 
 + (THRAPIManager *)sharedManager;
-- (void)reverseAuthTwitterForAccount:(ACAccount *)account
-                 withCompletionBlock:(ObjectCompletionBlock)completionBlock;
 
 @end

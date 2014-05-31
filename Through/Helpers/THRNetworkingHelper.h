@@ -10,9 +10,4 @@
 
 @interface THRNetworkingHelper : NSObject
 
-- (void)getTwitterRequestToken:(ObjectCompletionBlock)completionBlock;
-- (void)getTwitterAccessTokenForAccount:(ACAccount *)account
-                  withAuthorizationData:(NSData *)authorizationData
-                        completionBlock:(ObjectCompletionBlock)completionBlock;
-
 @end
