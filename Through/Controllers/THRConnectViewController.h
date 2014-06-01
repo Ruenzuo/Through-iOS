@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THRConnectViewController : UITableViewController
+@interface THRConnectViewController : UIViewController
 
 @end

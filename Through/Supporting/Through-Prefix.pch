@@ -17,5 +17,6 @@
     #import <SimpleAuth/SimpleAuth.h>
     #import <FXForms/FXForms.h>
     #import <RegExCategories/RegExCategories.h>
+    #import <libextobjc/EXTScope.h>
     #include "Definitions.h"
 #endif

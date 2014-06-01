@@ -7,6 +7,9 @@
 //
 
 #import "THRAppDelegate.h"
+#import "THRLoginViewController.h"
+#import "THRFeedViewController.h"
+#import "THRConnectViewController.h"
 
 @interface THRAppDelegate ()
 
@@ -20,7 +23,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     [self setupParseWithLaunchOptions:launchOptions];
+    PFUser *user = [PFUser currentUser];
+    if (!user) {
+        THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
+                                                       initWithNibName:nil
+                                                       bundle:nil];
+        self.viewController = loginViewController;
+    } else {
+        if (![[user objectForKey:@"hasServiceConnected"] boolValue]) {
+            THRConnectViewController *connectViewController = [[THRConnectViewController alloc]
+                                                               initWithNibName:nil
+                                                               bundle:nil];
+            self.viewController = connectViewController;
+        } else {
+            THRFeedViewController *feedViewController = [[THRFeedViewController alloc]
+                                                         initWithNibName:nil
+                                                         bundle:nil];
+            self.viewController = feedViewController;
+        }
+    }
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:self.viewController];
+    self.window.rootViewController = navigationController;
     return YES;
 }
 
