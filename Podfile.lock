@@ -5,6 +5,7 @@ PODS:
     - NSData+Base64 (~> 1.0)
   - Facebook-iOS-SDK (3.14.1):
     - Bolts
+  - FXBlurView (1.6.1)
   - FXForms (1.1.6)
   - HexColors (2.2.1)
   - libextobjc (0.4):
@@ -63,6 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - Facebook-iOS-SDK (~> 3.14.1)
+  - FXBlurView (~> 1.6.1)
   - FXForms (~> 1.1.6)
   - HexColors (~> 2.2.1)
   - libextobjc (~> 0.4.0)
@@ -75,6 +77,7 @@ SPEC CHECKSUMS:
   CMDQueryStringSerialization: e53570ccbce6004acba30b1c1210e254644cdb92
   cocoa-oauth: 418c70e6ce4130fa7ebdf05232018c8f391030d8
   Facebook-iOS-SDK: e9b3d5ac54ee3e5e693f4eef470b97911b3d076d
+  FXBlurView: 1d01b96076d65027314d1be024c7506c292392aa
   FXForms: 9387c60ee6f3e1c75e0f8998012acc1ce0ad8d0a
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f

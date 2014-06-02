@@ -8,4 +8,5 @@ target "Through" do
   pod 'libextobjc', '~> 0.4.0'
   pod 'HexColors', '~> 2.2.1'
   pod 'SDWebImage', '~> 3.6.0'
+  pod 'FXBlurView', '~> 1.6.1'
 end

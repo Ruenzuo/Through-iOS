@@ -32,6 +32,7 @@
 		3F7373D71938D9340062462F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F07555C19389A3D00AF1C4D /* Social.framework */; };
 		3FB3EA3D193C87B7001ABEED /* THRMediaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA3C193C87B7001ABEED /* THRMediaCollectionViewCell.m */; };
 		3FB3EA41193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA40193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m */; };
+		3FB3EA44193CC51C001ABEED /* THRLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA43193CC51C001ABEED /* THRLabel.m */; };
 		3FC6B5CF193A15AC00D57D1E /* THRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */; };
 		3FC6B5D6193A16FA00D57D1E /* THRLoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D5193A16FA00D57D1E /* THRLoginForm.m */; };
 		3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */; };
@@ -75,6 +76,8 @@
 		3FB3EA3C193C87B7001ABEED /* THRMediaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRMediaCollectionViewCell.m; path = Views/THRMediaCollectionViewCell.m; sourceTree = "<group>"; };
 		3FB3EA3F193C8916001ABEED /* THRMediaCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRMediaCollectionViewFlowLayout.h; path = Extensions/THRMediaCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		3FB3EA40193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRMediaCollectionViewFlowLayout.m; path = Extensions/THRMediaCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		3FB3EA42193CC51C001ABEED /* THRLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLabel.h; path = Extensions/THRLabel.h; sourceTree = "<group>"; };
+		3FB3EA43193CC51C001ABEED /* THRLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRLabel.m; path = Extensions/THRLabel.m; sourceTree = "<group>"; };
 		3FC6B5CD193A15AC00D57D1E /* THRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLoginViewController.h; path = Controllers/THRLoginViewController.h; sourceTree = "<group>"; };
 		3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRLoginViewController.m; path = Controllers/THRLoginViewController.m; sourceTree = "<group>"; };
 		3FC6B5D4193A16FA00D57D1E /* THRLoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLoginForm.h; path = Models/THRLoginForm.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 			children = (
 				3FB3EA3F193C8916001ABEED /* THRMediaCollectionViewFlowLayout.h */,
 				3FB3EA40193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m */,
+				3FB3EA42193CC51C001ABEED /* THRLabel.h */,
+				3FB3EA43193CC51C001ABEED /* THRLabel.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 				3FB3EA41193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m in Sources */,
 				3F06CF1519388F7B006B8EC0 /* main.m in Sources */,
 				3FC6B5D6193A16FA00D57D1E /* THRLoginForm.m in Sources */,
+				3FB3EA44193CC51C001ABEED /* THRLabel.m in Sources */,
 				3FB3EA3D193C87B7001ABEED /* THRMediaCollectionViewCell.m in Sources */,
 				3F1C4850193B950D002C7E75 /* THRFeedViewController.m in Sources */,
 				3FC6B5CF193A15AC00D57D1E /* THRLoginViewController.m in Sources */,

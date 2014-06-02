@@ -134,14 +134,23 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    THRMediaCollectionViewCell* cell = [collectionView
+    THRMediaCollectionViewCell *cell = [collectionView
                                         dequeueReusableCellWithReuseIdentifier:cellIdentifier
                                         forIndexPath:indexPath];
     PFObject *media = self.feed[indexPath.row];
     cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
+    cell.details = [media objectForKey:@"text"];
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell toggleDetails];
 }
 
 #pragma mark - UIScrollViewDelegate

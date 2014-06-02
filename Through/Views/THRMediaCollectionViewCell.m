@@ -7,10 +7,14 @@
 //
 
 #import "THRMediaCollectionViewCell.h"
+#import "THRLabel.h"
 
 @interface THRMediaCollectionViewCell ()
 
 @property (nonatomic, weak) UIImageView *imgViewMedia;
+
+- (void)addBlurView;
+- (void)removeBlurView;
 
 @end
 
@@ -40,6 +44,14 @@
     self.imgViewMedia = imgViewMedia;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    if (self.blurView) {
+        [self.blurView removeFromSuperview];
+    }
+}
+
 - (void)setImageURL:(NSURL *)imageURL
 {
     [self.imgViewMedia setImageWithURL:imageURL];
@@ -52,6 +64,61 @@
     CGRect frame = self.imgViewMedia.bounds;
     CGRect offsetFrame = CGRectOffset(frame, _imageOffset.x, _imageOffset.y);
     self.imgViewMedia.frame = offsetFrame;
+}
+
+#pragma mark - Public Methods
+
+- (void)toggleDetails
+{
+    if (self.blurView) {
+        [self removeBlurView];
+    } else {
+        [self addBlurView];
+    }
+}
+
+#pragma mark - Private Methods
+
+- (void)addBlurView
+{
+    FXBlurView *blurView = [[FXBlurView alloc] initWithFrame:CGRectMake(0,
+                                                                        self.bounds.size.height,
+                                                                        self.bounds.size.width,
+                                                                        self.bounds.size.height/3)];
+    [blurView setTintColor:[UIColor clearColor]];
+    blurView.blurRadius = 40;
+    self.blurView = blurView;
+    [self addSubview:blurView];
+    THRLabel *lblDetails = [[THRLabel alloc]
+                            initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height/3)];
+    lblDetails.text = self.details;
+    lblDetails.font = [UIFont systemFontOfSize:13.0f];
+    lblDetails.numberOfLines = 2;
+    [lblDetails setTextColor:[UIColor colorWithHexString:@"#5856D6"]];
+    [self.blurView addSubview:lblDetails];
+    [UIView animateWithDuration:0.35
+                     animations:^{
+                         self.blurView.frame = CGRectMake(0,
+                                                          self.bounds.size.height/3*2,
+                                                          self.bounds.size.width,
+                                                          self.bounds.size.height/3);
+                     }];
+}
+
+- (void)removeBlurView
+{
+    [UIView animateWithDuration:0.35
+                     animations:^{
+                         self.blurView.frame = CGRectMake(0,
+                                                          self.bounds.size.height,
+                                                          self.bounds.size.width,
+                                                          self.bounds.size.height/3);
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished) {
+                             [self.blurView removeFromSuperview];
+                         }
+                     }];
 }
 
 @end

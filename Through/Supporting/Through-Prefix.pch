@@ -20,5 +20,6 @@
     #import <libextobjc/EXTScope.h>
     #import <HexColors/HexColor.h>
     #import <SDWebImage/UIImageView+WebCache.h>
+    #import <FXBlurView/FXBlurView.h>
     #include "Definitions.h"
 #endif

@@ -13,7 +13,11 @@
 
 @interface THRMediaCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong, readwrite) NSURL *imageURL;
-@property (nonatomic, assign, readwrite) CGPoint imageOffset;
+@property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, strong) NSString *details;
+@property (nonatomic, assign) CGPoint imageOffset;
+@property (nonatomic, weak) FXBlurView *blurView;
+
+- (void)toggleDetails;
 
 @end
