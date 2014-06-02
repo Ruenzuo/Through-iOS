@@ -84,24 +84,24 @@
     FXBlurView *blurView = [[FXBlurView alloc] initWithFrame:CGRectMake(0,
                                                                         self.bounds.size.height,
                                                                         self.bounds.size.width,
-                                                                        self.bounds.size.height/3)];
+                                                                        self.bounds.size.height/2)];
     [blurView setTintColor:[UIColor clearColor]];
     blurView.blurRadius = 40;
     self.blurView = blurView;
     [self addSubview:blurView];
     THRLabel *lblDetails = [[THRLabel alloc]
-                            initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height/3)];
+                            initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height/2)];
     lblDetails.text = self.details;
     lblDetails.font = [UIFont systemFontOfSize:13.0f];
-    lblDetails.numberOfLines = 2;
+    lblDetails.numberOfLines = 3;
     [lblDetails setTextColor:[UIColor colorWithHexString:@"#5856D6"]];
     [self.blurView addSubview:lblDetails];
     [UIView animateWithDuration:0.35
                      animations:^{
                          self.blurView.frame = CGRectMake(0,
-                                                          self.bounds.size.height/3*2,
+                                                          self.bounds.size.height/2,
                                                           self.bounds.size.width,
-                                                          self.bounds.size.height/3);
+                                                          self.bounds.size.height/2);
                      }];
 }
 
@@ -112,7 +112,7 @@
                          self.blurView.frame = CGRectMake(0,
                                                           self.bounds.size.height,
                                                           self.bounds.size.width,
-                                                          self.bounds.size.height/3);
+                                                          self.bounds.size.height/2);
                      }
                      completion:^(BOOL finished) {
                          if (finished) {

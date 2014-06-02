@@ -12,8 +12,11 @@
 @interface THRFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, assign) BOOL shouldRefreshOlder;
 
 - (void)refresh:(id)sender;
+- (void)quickDetails:(id)sender;
+- (void)refreshOlder;
 
 @end
 
@@ -31,6 +34,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     if (self) {
         self.title = @"Feed";
         self.feed = [NSMutableArray array];
+        self.shouldRefreshOlder = YES;
     }
     return self;
 }
@@ -51,6 +55,10 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     self.collectionView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.collectionView setContentInset:UIEdgeInsetsMake(20 + 44.0f, 0, 20 + 20 + 44.0f, 0)];
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                        action:@selector(quickDetails:)];
+    [gestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight];
+    [self.collectionView addGestureRecognizer:gestureRecognizer];
     if ([self.feed count] == 0) {
         PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
         [query whereKey:@"user" equalTo:[PFUser currentUser]];
@@ -68,6 +76,12 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
                                           indexSetWithIndexesInRange:
                                           NSMakeRange(0, [objects count])]];
                 [[self collectionView] reloadData];
+                [[self collectionView]
+                 scrollToItemAtIndexPath:[NSIndexPath
+                                          indexPathForItem:0
+                                          inSection:0]
+                 atScrollPosition:UICollectionViewScrollPositionTop
+                 animated:YES];
             }
         }];
     }
@@ -123,6 +137,49 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     }];
 }
 
+- (void)quickDetails:(id)sender
+{
+    UIGestureRecognizer *gestureRecognizer = (UIGestureRecognizer *)sender;
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    if (indexPath == nil){
+        NSLog(@"couldn't find index path");
+    } else {
+        THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[self.collectionView
+                                                                          cellForItemAtIndexPath:indexPath];
+        [cell toggleDetails];
+    }
+}
+
+- (void)refreshOlder
+{
+    @weakify(self);
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    PFObject *oldestFeed = self.feed.lastObject;
+    [query whereKey:@"mediaDate" lessThan:[oldestFeed objectForKey:@"mediaDate"]];
+    [query orderByDescending:@"mediaDate"];
+    [query setLimit:50];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        @strongify(self);
+        
+        if (error) {
+            //TODO: Handle error.
+        } else if ([objects count] == 0) {
+            [SVProgressHUD showErrorWithStatus:@"Can't find more items."];
+            self.shouldRefreshOlder = NO;
+        } else {
+            [self.feed addObjectsFromArray:objects];
+            [[self collectionView] reloadData];
+        }
+    }];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -139,9 +196,13 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
                                         forIndexPath:indexPath];
     PFObject *media = self.feed[indexPath.row];
     cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
-    cell.details = [media objectForKey:@"text"];
+    NSDate *date = [media objectForKey:@"mediaDate"];
+    cell.details = [NSString stringWithFormat:@"%@ on Twitter (%@): %@", [media objectForKey:@"userName"], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
+    if (indexPath.row == self.feed.count - 1 && self.shouldRefreshOlder) {
+        [self refreshOlder];
+    }
     return cell;
 }
 
@@ -149,8 +210,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell toggleDetails];
+    
 }
 
 #pragma mark - UIScrollViewDelegate

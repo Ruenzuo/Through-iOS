@@ -9,4 +9,6 @@ target "Through" do
   pod 'HexColors', '~> 2.2.1'
   pod 'SDWebImage', '~> 3.6.0'
   pod 'FXBlurView', '~> 1.6.1'
+  pod 'DateTools', '~> 1.2.0'
+  pod 'SVProgressHUD', '~> 1.0.0'
 end
