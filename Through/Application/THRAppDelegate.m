@@ -25,6 +25,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.tintColor = [UIColor colorWithHexString:@"#C644FC"];
     [self.window makeKeyAndVisible];
     [self setupParseWithLaunchOptions:launchOptions];
     PFUser *user = [PFUser currentUser];

@@ -18,5 +18,6 @@
     #import <FXForms/FXForms.h>
     #import <RegExCategories/RegExCategories.h>
     #import <libextobjc/EXTScope.h>
+    #import <HexColors/HexColor.h>
     #include "Definitions.h"
 #endif

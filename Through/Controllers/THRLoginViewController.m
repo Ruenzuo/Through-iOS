@@ -15,9 +15,11 @@
 
 - (BOOL)validateSignInFields;
 - (BOOL)validateSignUpEmail;
-- (BOOL)validateSignUpPassword;
+- (BOOL)validateSignUpPasswordCorrectness;
+- (BOOL)validateSignUpPasswordMatch;
 - (void)showInvalidUserInfoError;
 - (void)showUnexpectedError;
+- (void)showRegistrationErrorWithMessage:(NSString *)message;
 - (void)showConnectViewController;
 - (void)showFeedViewController;
 
@@ -62,22 +64,19 @@
 - (BOOL)validateSignUpEmail
 {
     THRRootForm *form = self.formController.form;
-    if ([form.registrationForm.email isMatch:RX(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return [form.registrationForm.email isMatch:RX(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")];
 }
 
-- (BOOL)validateSignUpPassword
+- (BOOL)validateSignUpPasswordCorrectness
 {
     THRRootForm *form = self.formController.form;
-    if ([form.registrationForm.password isMatch:RX(@"^(?=.*\\d).{6,20}$")] &&
-        [form.registrationForm.password isEqualToString:form.registrationForm.repeatPassword]) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return [form.registrationForm.password isMatch:RX(@"^(?=.*\\d).{6,20}$")];
+}
+
+- (BOOL)validateSignUpPasswordMatch
+{
+    THRRootForm *form = self.formController.form;
+    return [form.registrationForm.password isEqualToString:form.registrationForm.repeatPassword];
 }
 
 - (void)showInvalidUserInfoError
@@ -96,6 +95,17 @@
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@"Login error"
                               message:@"Unexpected error. Please try again later."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)showRegistrationErrorWithMessage:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"Registration error"
+                              message:message
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -165,8 +175,13 @@
     @weakify(self);
     
     THRRegistrationForm *form = ((THRRootForm *) self.formController.form).registrationForm;
-    if ([self validateSignUpEmail] &&
-        [self validateSignUpPassword]) {
+    if (![self validateSignUpEmail]) {
+        [self showRegistrationErrorWithMessage:@"Email is not valid."];
+    } else if (![self validateSignUpPasswordCorrectness]) {
+        [self showRegistrationErrorWithMessage:@"Password is not valid. Must be between 6 and 20 characters and contain at least one numeric digit."];
+    } else if (![self validateSignUpPasswordMatch]) {
+        [self showRegistrationErrorWithMessage:@"Passwords don't match."];
+    } else {
         PFUser *user = [PFUser user];
         user.username = form.email;
         user.password = form.password;

@@ -6,4 +6,5 @@ target "Through" do
   pod 'FXForms', '~> 1.1.6'
   pod 'RegExCategories', '~> 1.0.0'
   pod 'libextobjc', '~> 0.4.0'
+  pod 'HexColors', '~> 2.2.1'
 end

@@ -6,6 +6,7 @@ PODS:
   - Facebook-iOS-SDK (3.14.1):
     - Bolts
   - FXForms (1.1.6)
+  - HexColors (2.2.1)
   - libextobjc (0.4):
     - libextobjc/EXTADT
     - libextobjc/EXTConcreteProtocol
@@ -60,6 +61,7 @@ PODS:
 DEPENDENCIES:
   - Facebook-iOS-SDK (~> 3.14.1)
   - FXForms (~> 1.1.6)
+  - HexColors (~> 2.2.1)
   - libextobjc (~> 0.4.0)
   - RegExCategories (~> 1.0.0)
   - SimpleAuth/Twitter (~> 0.3.2)
@@ -70,6 +72,7 @@ SPEC CHECKSUMS:
   cocoa-oauth: 418c70e6ce4130fa7ebdf05232018c8f391030d8
   Facebook-iOS-SDK: e9b3d5ac54ee3e5e693f4eef470b97911b3d076d
   FXForms: 9387c60ee6f3e1c75e0f8998012acc1ce0ad8d0a
+  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
   NSData+Base64: aae92a2e3f0bd88b29fe6093551ded3f5c062548
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
