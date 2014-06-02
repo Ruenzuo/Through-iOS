@@ -8,7 +8,6 @@
 
 #import "THRConnectViewController.h"
 #import "THRFeedViewController.h"
-#import "THRApiManager.h"
 
 @interface THRConnectViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -155,7 +154,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
     THRFeedViewController *feedViewController = [[THRFeedViewController alloc]
                                                  initWithNibName:nil
                                                  bundle:nil];
-    feedViewController.feed = self.twitterFeed;
+    [feedViewController.feed addObjectsFromArray:self.twitterFeed];
     UINavigationController *navigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:feedViewController];
     [self presentViewController:navigationController

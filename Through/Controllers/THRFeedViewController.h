@@ -10,6 +10,6 @@
 
 @interface THRFeedViewController : UIViewController
 
-@property (nonatomic, strong) NSArray *feed;
+@property (nonatomic, strong) NSMutableArray *feed;
 
 @end
