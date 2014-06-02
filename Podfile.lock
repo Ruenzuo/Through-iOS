@@ -51,6 +51,9 @@ PODS:
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
   - RegExCategories (1.0)
+  - SDWebImage (3.6):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.6)
   - SimpleAuth/Core (0.3.2):
     - CMDQueryStringSerialization
     - ReactiveCocoa
@@ -64,6 +67,7 @@ DEPENDENCIES:
   - HexColors (~> 2.2.1)
   - libextobjc (~> 0.4.0)
   - RegExCategories (~> 1.0.0)
+  - SDWebImage (~> 3.6.0)
   - SimpleAuth/Twitter (~> 0.3.2)
 
 SPEC CHECKSUMS:
@@ -77,6 +81,7 @@ SPEC CHECKSUMS:
   NSData+Base64: aae92a2e3f0bd88b29fe6093551ded3f5c062548
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   RegExCategories: a6410301023ff81bd047c05fd8691d24ca5c7ea9
+  SDWebImage: c6989652c1cdf27cbdf3f56957e2030f825af5bc
   SimpleAuth: ae531fc2986b34e6fb6975885b0e42cf86bcc918
 
 COCOAPODS: 0.33.1

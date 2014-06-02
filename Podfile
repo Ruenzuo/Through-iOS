@@ -7,4 +7,5 @@ target "Through" do
   pod 'RegExCategories', '~> 1.0.0'
   pod 'libextobjc', '~> 0.4.0'
   pod 'HexColors', '~> 2.2.1'
+  pod 'SDWebImage', '~> 3.6.0'
 end

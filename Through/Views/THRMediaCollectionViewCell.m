@@ -33,7 +33,7 @@
                                                           self.bounds.origin.y,
                                                           self.bounds.size.width,
                                                           IMAGE_HEIGHT)];
-    imgViewMedia.backgroundColor = [UIColor redColor];
+    imgViewMedia.backgroundColor = [UIColor whiteColor];
     imgViewMedia.contentMode = UIViewContentModeScaleAspectFill;
     imgViewMedia.clipsToBounds = NO;
     [self addSubview:imgViewMedia];
@@ -42,7 +42,7 @@
 
 - (void)setImageURL:(NSURL *)imageURL
 {
-    //TODO: Set media URL.
+    [self.imgViewMedia setImageWithURL:imageURL];
     [self setImageOffset:self.imageOffset];
 }
 

@@ -38,6 +38,9 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    @weakify(self);
+    
     UIBarButtonItem *btnDone = [[UIBarButtonItem alloc]
                                 initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                                 target:self
@@ -52,6 +55,9 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
         [query orderByDescending:@"mediaDate"];
         [query setLimit:50];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            @strongify(self);
+            
             if (error) {
                 //TODO: Handle error.
             } else {
@@ -74,6 +80,8 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 - (void)refresh:(id)sender
 {
+    @weakify(self);
+    
     PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     if ([self.feed count] != 0) {
@@ -83,18 +91,35 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     [query orderByDescending:@"mediaDate"];
     [query setLimit:50];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        @strongify(self);
+        
         if (error) {
             //TODO: Handle error.
+        } else if ([objects count] == 0) {
+            [PFCloud
+             callFunctionInBackground:@"generateFeedsForUser"
+             withParameters:@{@"username": [[PFUser currentUser] objectForKey:@"username"]}
+             block:^(NSArray *results, NSError *error) {
+                 if (error) {
+                     //TODO: Handle error.
+                 } else {
+                     [self.feed insertObjects:results
+                                    atIndexes:[NSIndexSet
+                                               indexSetWithIndexesInRange:
+                                               NSMakeRange(0, [results count])]];
+                     [[self collectionView] reloadData];
+                 }
+             }];
         } else {
             [self.feed insertObjects:objects
                            atIndexes:[NSIndexSet
                                       indexSetWithIndexesInRange:
                                       NSMakeRange(0, [objects count])]];
+            [[self collectionView] reloadData];
         }
     }];
 }
-
-
 
 #pragma mark - UICollectionViewDataSource
 
@@ -110,7 +135,8 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     THRMediaCollectionViewCell* cell = [collectionView
                                         dequeueReusableCellWithReuseIdentifier:cellIdentifier
                                         forIndexPath:indexPath];
-    //TODO: Set media URL.
+    PFObject *media = self.feed[indexPath.row];
+    cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
     return cell;

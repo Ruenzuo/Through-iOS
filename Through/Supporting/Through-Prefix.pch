@@ -19,5 +19,6 @@
     #import <RegExCategories/RegExCategories.h>
     #import <libextobjc/EXTScope.h>
     #import <HexColors/HexColor.h>
+    #import <SDWebImage/UIImageView+WebCache.h>
     #include "Definitions.h"
 #endif
