@@ -146,12 +146,16 @@
         [self showInvalidUserInfoError];
     } else {
         THRLoginForm *form = ((THRRootForm *) self.formController.form).loginForm;
+        [SVProgressHUD showWithStatus:@"Signing in"
+                             maskType:SVProgressHUDMaskTypeBlack];
         [PFUser
          logInWithUsernameInBackground:form.email
          password:form.password
          block:^(PFUser *user, NSError *error) {
              
              @strongify(self);
+             
+             [SVProgressHUD dismiss];
              
              if (error) {
                  if ([error code] == 101) {

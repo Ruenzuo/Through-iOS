@@ -44,7 +44,8 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                                                bundle:nil]
          forCellReuseIdentifier:cellIdentifier];
     UIBarButtonItem *btnDone = [[UIBarButtonItem alloc]
-                                initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                initWithImage:[UIImage imageNamed:@"Done"]
+                                style:UIBarButtonItemStyleBordered
                                 target:self
                                 action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = btnDone;
@@ -85,9 +86,12 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
     [self.tableView deselectRowAtIndexPath:indexPath
                                   animated:YES];
     switch (indexPath.row) {
-        case 0:
-            [self connectTwitter];
+        case 0: {
+            if (![[[PFUser currentUser] objectForKey:@"hasServiceConnected"] boolValue]) {
+                [self connectTwitter];
+            }
             break;
+        }
     }
 }
 
@@ -122,6 +126,8 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                               forKey:@"twitterUserID"];
              [twitterOAuth setObject:[PFUser currentUser]
                               forKey:@"user"];
+             [SVProgressHUD showWithStatus:@"Connecting"
+                                  maskType:SVProgressHUDMaskTypeBlack];
              [twitterOAuth saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                  if (error) {
                      //TODO: Handle error.
@@ -137,6 +143,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                           if (error) {
                               //TODO: Handle error.
                           } else {
+                              [SVProgressHUD dismiss];
                               self.twitterConnected = YES;
                               self.btnDone.enabled = YES;
                               self.twitterFeed = results;

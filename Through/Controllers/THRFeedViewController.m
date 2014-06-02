@@ -17,6 +17,7 @@
 - (void)refresh:(id)sender;
 - (void)quickDetails:(id)sender;
 - (void)refreshOlder;
+- (void)goToSettings:(id)sender;
 
 @end
 
@@ -45,11 +46,18 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     
     @weakify(self);
     
-    UIBarButtonItem *btnDone = [[UIBarButtonItem alloc]
-                                initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                target:self
-                                action:@selector(refresh:)];
-    self.navigationItem.rightBarButtonItem = btnDone;
+    UIBarButtonItem *btnRefresh = [[UIBarButtonItem alloc]
+                                   initWithImage:[UIImage imageNamed:@"Refresh"]
+                                   style:UIBarButtonItemStyleBordered
+                                   target:self
+                                   action:@selector(refresh:)];
+    self.navigationItem.rightBarButtonItem = btnRefresh;
+    UIBarButtonItem *btnSettings = [[UIBarButtonItem alloc]
+                                    initWithImage:[UIImage imageNamed:@"Settings"]
+                                    style:UIBarButtonItemStyleBordered
+                                    target:self
+                                    action:@selector(goToSettings:)];
+    self.navigationItem.leftBarButtonItem = btnSettings;
     [self.collectionView registerClass:[THRMediaCollectionViewCell class]
             forCellWithReuseIdentifier:cellIdentifier];
     self.collectionView.delegate = self;
@@ -93,6 +101,11 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 }
 
 #pragma mark - Private Methods
+
+- (void)goToSettings:(id)sender
+{
+    
+}
 
 - (void)refresh:(id)sender
 {

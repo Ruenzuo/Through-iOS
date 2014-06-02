@@ -33,6 +33,7 @@
 		3FB3EA3D193C87B7001ABEED /* THRMediaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA3C193C87B7001ABEED /* THRMediaCollectionViewCell.m */; };
 		3FB3EA41193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA40193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m */; };
 		3FB3EA44193CC51C001ABEED /* THRLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA43193CC51C001ABEED /* THRLabel.m */; };
+		3FB3EA47193CD787001ABEED /* THRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA46193CD787001ABEED /* THRSettingsViewController.m */; };
 		3FC6B5CF193A15AC00D57D1E /* THRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */; };
 		3FC6B5D6193A16FA00D57D1E /* THRLoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D5193A16FA00D57D1E /* THRLoginForm.m */; };
 		3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */; };
@@ -78,6 +79,8 @@
 		3FB3EA40193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRMediaCollectionViewFlowLayout.m; path = Extensions/THRMediaCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		3FB3EA42193CC51C001ABEED /* THRLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLabel.h; path = Extensions/THRLabel.h; sourceTree = "<group>"; };
 		3FB3EA43193CC51C001ABEED /* THRLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRLabel.m; path = Extensions/THRLabel.m; sourceTree = "<group>"; };
+		3FB3EA45193CD787001ABEED /* THRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRSettingsViewController.h; path = Controllers/THRSettingsViewController.h; sourceTree = "<group>"; };
+		3FB3EA46193CD787001ABEED /* THRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRSettingsViewController.m; path = Controllers/THRSettingsViewController.m; sourceTree = "<group>"; };
 		3FC6B5CD193A15AC00D57D1E /* THRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLoginViewController.h; path = Controllers/THRLoginViewController.h; sourceTree = "<group>"; };
 		3FC6B5CE193A15AC00D57D1E /* THRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRLoginViewController.m; path = Controllers/THRLoginViewController.m; sourceTree = "<group>"; };
 		3FC6B5D4193A16FA00D57D1E /* THRLoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRLoginForm.h; path = Models/THRLoginForm.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				3F07556019389B9E00AF1C4D /* THRConnectViewController.m */,
 				3F1C484E193B950D002C7E75 /* THRFeedViewController.h */,
 				3F1C484F193B950D002C7E75 /* THRFeedViewController.m */,
+				3FB3EA45193CD787001ABEED /* THRSettingsViewController.h */,
+				3FB3EA46193CD787001ABEED /* THRSettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				3F1C4850193B950D002C7E75 /* THRFeedViewController.m in Sources */,
 				3FC6B5CF193A15AC00D57D1E /* THRLoginViewController.m in Sources */,
 				3F06CF0F19388F73006B8EC0 /* THRAppDelegate.m in Sources */,
+				3FB3EA47193CD787001ABEED /* THRSettingsViewController.m in Sources */,
 				3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */,
 				3F07556119389B9E00AF1C4D /* THRConnectViewController.m in Sources */,
 				3FC6B5DC193A1C7F00D57D1E /* THRRegistrationForm.m in Sources */,
