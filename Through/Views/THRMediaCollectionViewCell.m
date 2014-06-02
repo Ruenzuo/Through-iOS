@@ -95,6 +95,8 @@
     lblDetails.text = self.details;
     lblDetails.font = [UIFont systemFontOfSize:13.0f];
     lblDetails.numberOfLines = 0;
+    lblDetails.shadowColor = [UIColor colorWithHexString:@"#4A4A4A"];
+    lblDetails.shadowOffset = CGSizeMake(1, 1);
     [lblDetails setTextColor:[UIColor colorWithHexString:@"#5856D6"]];
     [self.blurView addSubview:lblDetails];
     [UIView animateWithDuration:0.35

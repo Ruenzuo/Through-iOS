@@ -47,18 +47,18 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     
     @weakify(self);
     
-    UIBarButtonItem *btnRefresh = [[UIBarButtonItem alloc]
-                                   initWithImage:[UIImage imageNamed:@"Refresh"]
-                                   style:UIBarButtonItemStyleBordered
-                                   target:self
-                                   action:@selector(refresh:)];
-    self.navigationItem.rightBarButtonItem = btnRefresh;
     UIBarButtonItem *btnSettings = [[UIBarButtonItem alloc]
                                     initWithImage:[UIImage imageNamed:@"Settings"]
                                     style:UIBarButtonItemStyleBordered
                                     target:self
                                     action:@selector(goToSettings:)];
     self.navigationItem.leftBarButtonItem = btnSettings;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl setTintColor:[UIColor colorWithHexString:@"#C644FC"]];
+    [refreshControl addTarget:self
+                       action:@selector(refresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
     [self.collectionView registerClass:[THRMediaCollectionViewCell class]
             forCellWithReuseIdentifier:cellIdentifier];
     self.collectionView.delegate = self;
@@ -128,6 +128,8 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 {
     @weakify(self);
     
+    UIRefreshControl *refreshControl = (UIRefreshControl *)sender;
+    
     PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     if ([self.feed count] != 0) {
@@ -142,11 +144,13 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
         
         if (error) {
             //TODO: Handle error.
+            [refreshControl endRefreshing];
         } else if ([objects count] == 0) {
             [PFCloud
              callFunctionInBackground:@"generateFeedsForUser"
              withParameters:@{@"username": [[PFUser currentUser] objectForKey:@"username"]}
              block:^(NSArray *results, NSError *error) {
+                 [refreshControl endRefreshing];
                  if (error) {
                      //TODO: Handle error.
                  } else {
@@ -154,6 +158,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
                  }
              }];
         } else {
+            [refreshControl endRefreshing];
             [self insertMedia:objects];
         }
     }];
