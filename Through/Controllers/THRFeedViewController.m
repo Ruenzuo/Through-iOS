@@ -18,6 +18,7 @@
 - (void)quickDetails:(id)sender;
 - (void)refreshOlder;
 - (void)goToSettings:(id)sender;
+- (void)insertMedia:(NSArray *)media;
 
 @end
 
@@ -79,17 +80,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
             if (error) {
                 //TODO: Handle error.
             } else {
-                [self.feed insertObjects:objects
-                               atIndexes:[NSIndexSet
-                                          indexSetWithIndexesInRange:
-                                          NSMakeRange(0, [objects count])]];
-                [[self collectionView] reloadData];
-                [[self collectionView]
-                 scrollToItemAtIndexPath:[NSIndexPath
-                                          indexPathForItem:0
-                                          inSection:0]
-                 atScrollPosition:UICollectionViewScrollPositionTop
-                 animated:YES];
+                [self insertMedia:objects];
             }
         }];
     }
@@ -101,6 +92,32 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 }
 
 #pragma mark - Private Methods
+
+- (void)insertMedia:(NSArray *)media
+{
+    if ([media count] == 0) {
+        return;
+    }
+    [self.collectionView performBatchUpdates:^{
+        [self.feed insertObjects:media
+                       atIndexes:[NSIndexSet
+                                  indexSetWithIndexesInRange:
+                                  NSMakeRange(0, [media count])]];
+        NSMutableArray *paths = [NSMutableArray array];
+        for (int i = 0; i < [media count]; i++) {
+            [paths addObject:[NSIndexPath indexPathForItem:i
+                                                 inSection:0]];
+        }
+        [self.collectionView insertItemsAtIndexPaths:[paths copy]];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0
+                                                                             inSection:0]
+                                        atScrollPosition:UICollectionViewScrollPositionTop
+                                                animated:YES];
+        }
+    }];
+}
 
 - (void)goToSettings:(id)sender
 {
@@ -133,19 +150,11 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
                  if (error) {
                      //TODO: Handle error.
                  } else {
-                     [self.feed insertObjects:results
-                                    atIndexes:[NSIndexSet
-                                               indexSetWithIndexesInRange:
-                                               NSMakeRange(0, [results count])]];
-                     [[self collectionView] reloadData];
+                     [self insertMedia:results];
                  }
              }];
         } else {
-            [self.feed insertObjects:objects
-                           atIndexes:[NSIndexSet
-                                      indexSetWithIndexesInRange:
-                                      NSMakeRange(0, [objects count])]];
-            [[self collectionView] reloadData];
+            [self insertMedia:objects];
         }
     }];
 }
