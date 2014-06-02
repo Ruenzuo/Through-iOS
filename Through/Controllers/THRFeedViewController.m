@@ -49,6 +49,8 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     [self.collectionView registerClass:[THRMediaCollectionViewCell class]
             forCellWithReuseIdentifier:cellIdentifier];
     self.collectionView.delegate = self;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.collectionView setContentInset:UIEdgeInsetsMake(20 + 44.0f, 0, 20 + 20 + 44.0f, 0)];
     if ([self.feed count] == 0) {
         PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
         [query whereKey:@"user" equalTo:[PFUser currentUser]];
