@@ -7,14 +7,19 @@
 //
 
 #import "THRFeedViewController.h"
+#import "THRMediaCollectionViewCell.h"
 
-@interface THRFeedViewController ()
+@interface THRFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 - (void)refresh:(id)sender;
 
 @end
 
 @implementation THRFeedViewController
+
+static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 #pragma mark - Controller Life Cycle
 
@@ -38,6 +43,9 @@
                                 target:self
                                 action:@selector(refresh:)];
     self.navigationItem.rightBarButtonItem = btnDone;
+    [self.collectionView registerClass:[THRMediaCollectionViewCell class]
+            forCellWithReuseIdentifier:cellIdentifier];
+    self.collectionView.delegate = self;
     if ([self.feed count] == 0) {
         PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
         [query whereKey:@"user" equalTo:[PFUser currentUser]];
@@ -51,6 +59,7 @@
                                atIndexes:[NSIndexSet
                                           indexSetWithIndexesInRange:
                                           NSMakeRange(0, [objects count])]];
+                [[self collectionView] reloadData];
             }
         }];
     }
@@ -83,6 +92,38 @@
                                       NSMakeRange(0, [objects count])]];
         }
     }];
+}
+
+
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section
+{
+    return self.feed.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    THRMediaCollectionViewCell* cell = [collectionView
+                                        dequeueReusableCellWithReuseIdentifier:cellIdentifier
+                                        forIndexPath:indexPath];
+    //TODO: Set media URL.
+    CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
+    cell.imageOffset = CGPointMake(0.0f, yOffset);
+    return cell;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    for(THRMediaCollectionViewCell *view in self.collectionView.visibleCells) {
+        CGFloat yOffset = ((self.collectionView.contentOffset.y - view.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
+        view.imageOffset = CGPointMake(0.0f, yOffset);
+    }
 }
 
 @end
