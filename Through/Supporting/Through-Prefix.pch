@@ -23,5 +23,7 @@
     #import <FXBlurView/FXBlurView.h>
     #import <DateTools/DateTools.h>
     #import <SVProgressHUD/SVProgressHUD.h>
+    #import <JTSImageViewController/JTSImageInfo.h>
+    #import <JTSImageViewController/JTSImageViewController.h>
     #include "Definitions.h"
 #endif

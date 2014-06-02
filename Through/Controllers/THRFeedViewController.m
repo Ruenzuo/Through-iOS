@@ -197,7 +197,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     PFObject *media = self.feed[indexPath.row];
     cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
     NSDate *date = [media objectForKey:@"mediaDate"];
-    cell.details = [NSString stringWithFormat:@"%@ on Twitter (%@): %@", [media objectForKey:@"userName"], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
+    cell.details = [NSString stringWithFormat:@"%@ on Twitter (%@):\n%@", [media objectForKey:@"userName"], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
     if (indexPath.row == self.feed.count - 1 && self.shouldRefreshOlder) {
@@ -210,7 +210,19 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[self.collectionView
+                                                                      cellForItemAtIndexPath:indexPath];
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = cell.imgViewMedia.image;
+    imageInfo.referenceRect = cell.frame;
+    imageInfo.referenceView = cell.superview;
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+    [imageViewer
+     showFromViewController:self
+     transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -11,4 +11,5 @@ target "Through" do
   pod 'FXBlurView', '~> 1.6.1'
   pod 'DateTools', '~> 1.2.0'
   pod 'SVProgressHUD', '~> 1.0.0'
+  pod 'JTSImageViewController', '~> 1.1.1'
 end
