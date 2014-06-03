@@ -8,6 +8,7 @@
 
 #import "THRFeedViewController.h"
 #import "THRMediaCollectionViewCell.h"
+#import "THRSettingsViewController.h"
 
 @interface THRFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -121,7 +122,11 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 - (void)goToSettings:(id)sender
 {
-    
+    THRSettingsViewController *settingsViewController = [[THRSettingsViewController alloc]
+                                                         initWithNibName:nil
+                                                         bundle:nil];
+    [self.navigationController pushViewController:settingsViewController
+                                         animated:YES];
 }
 
 - (void)refresh:(id)sender

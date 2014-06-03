@@ -12,4 +12,6 @@ target "Through" do
   pod 'DateTools', '~> 1.2.0'
   pod 'SVProgressHUD', '~> 1.0.0'
   pod 'JTSImageViewController', '~> 1.1.1'
+  pod 'VTAcknowledgementsViewController', '~> 0.11.0'
+  pod 'TSMessages', '~> 0.9.9'
 end

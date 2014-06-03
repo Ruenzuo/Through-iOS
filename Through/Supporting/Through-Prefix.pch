@@ -25,5 +25,9 @@
     #import <SVProgressHUD/SVProgressHUD.h>
     #import <JTSImageViewController/JTSImageInfo.h>
     #import <JTSImageViewController/JTSImageViewController.h>
+    #import <VTAcknowledgementsViewController/VTAcknowledgementsViewController.h>
+    #import <TSMessages/TSMessage.h>
+    #import <Social/Social.h>
+    #import <MessageUI/MessageUI.h>
     #include "Definitions.h"
 #endif
