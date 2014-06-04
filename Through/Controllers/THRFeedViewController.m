@@ -16,7 +16,6 @@
 @property (nonatomic, assign) BOOL shouldRefreshOlder;
 
 - (void)refresh:(id)sender;
-- (void)quickDetails:(id)sender;
 - (void)refreshOlder;
 - (void)goToSettings:(id)sender;
 - (void)insertMedia:(NSArray *)media;
@@ -65,9 +64,9 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     self.collectionView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.collectionView setContentInset:UIEdgeInsetsMake(20 + 44.0f, 0, 20 + 20 + 44.0f, 0)];
-    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(quickDetails:)];
-    [gestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight];
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                 initWithTarget:self
+                                                 action:@selector(cellSelected:)];
     [self.collectionView addGestureRecognizer:gestureRecognizer];
     if ([self.feed count] == 0) {
         PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
@@ -93,6 +92,32 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 }
 
 #pragma mark - Private Methods
+
+- (void)cellSelected:(UITapGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    if (indexPath == nil){
+        NSLog(@"couldn't find index path");
+    } else {
+        THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[self.collectionView
+                                                                          cellForItemAtIndexPath:indexPath];
+        JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+        imageInfo.image = cell.imgViewMedia.image;
+        imageInfo.referenceRect = cell.frame;
+        imageInfo.referenceView = cell.superview;
+        JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                               initWithImageInfo:imageInfo
+                                               mode:JTSImageViewControllerMode_Image
+                                               backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+        [imageViewer
+         showFromViewController:self
+         transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    }
+}
 
 - (void)insertMedia:(NSArray *)media
 {
@@ -169,23 +194,6 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     }];
 }
 
-- (void)quickDetails:(id)sender
-{
-    UIGestureRecognizer *gestureRecognizer = (UIGestureRecognizer *)sender;
-    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-        return;
-    }
-    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-    if (indexPath == nil){
-        NSLog(@"couldn't find index path");
-    } else {
-        THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[self.collectionView
-                                                                          cellForItemAtIndexPath:indexPath];
-        [cell toggleDetails];
-    }
-}
-
 - (void)refreshOlder
 {
     @weakify(self);
@@ -229,7 +237,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     PFObject *media = self.feed[indexPath.row];
     cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
     NSDate *date = [media objectForKey:@"mediaDate"];
-    cell.details = [NSString stringWithFormat:@"%@ on Twitter (%@):\n%@", [media objectForKey:@"userName"], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
+    cell.lblDescription.text = [NSString stringWithFormat:@"%@ on Twitter (%@ ago):\n%@", [media objectForKey:@"userName"], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
     if (indexPath.row == self.feed.count - 1 && self.shouldRefreshOlder) {
@@ -240,21 +248,9 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 #pragma mark - UICollectionViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    THRMediaCollectionViewCell *cell = (THRMediaCollectionViewCell *)[self.collectionView
-                                                                      cellForItemAtIndexPath:indexPath];
-    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-    imageInfo.image = cell.imgViewMedia.image;
-    imageInfo.referenceRect = cell.frame;
-    imageInfo.referenceView = cell.superview;
-    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
-                                           initWithImageInfo:imageInfo
-                                           mode:JTSImageViewControllerMode_Image
-                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
-    [imageViewer
-     showFromViewController:self
-     transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    return NO;
 }
 
 #pragma mark - UIScrollViewDelegate

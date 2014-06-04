@@ -9,25 +9,40 @@
 #import "THRMediaCollectionViewCell.h"
 #import "THRLabel.h"
 
-@interface THRMediaCollectionViewCell ()
+@interface THRMediaCollectionViewCell () <UIScrollViewDelegate>
 
-- (void)addBlurView;
-- (void)removeBlurView;
+@property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, weak) UIView *opaqueBackground;
+@property (nonatomic, weak) UIPageControl *pageControl;
+
+- (void)setupContents;
+- (void)changePage:(id)sender;
 
 @end
 
 @implementation THRMediaCollectionViewCell
 
+#pragma mark - View Life Cycle
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupImageView];
+        [self setupContents];
     }
     return self;
 }
 
-- (void)setupImageView
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [self.scrollView setContentOffset:CGPointMake(0, 0)];
+    [self.pageControl setCurrentPage:0];
+}
+
+#pragma mark - Private Methods
+
+- (void)setupContents
 {
     self.clipsToBounds = YES;
     UIImageView *imgViewMedia = [[UIImageView alloc]
@@ -40,15 +55,61 @@
     imgViewMedia.clipsToBounds = NO;
     [self addSubview:imgViewMedia];
     self.imgViewMedia = imgViewMedia;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x,
+                                                            self.bounds.origin.y,
+                                                            self.bounds.size.width,
+                                                            self.bounds.size.height)];
+    view.backgroundColor = [UIColor colorWithHexString:@"#000000"
+                                                 alpha:0.75];
+    view.alpha = 0;
+    [self addSubview:view];
+    self.opaqueBackground = view;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.bounds.origin.x,
+                                                                              self.bounds.origin.y,
+                                                                              self.bounds.size.width,
+                                                                              self.bounds.size.height)];
+    scrollView.bounces = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.pagingEnabled = YES;
+    scrollView.backgroundColor = [UIColor clearColor];
+    scrollView.contentSize = CGSizeMake(self.bounds.size.width * 2, self.bounds.size.height);
+    scrollView.delegate = self;
+    [self addSubview:scrollView];
+    self.scrollView = scrollView;
+    THRLabel *lblDescription = [[THRLabel alloc] initWithFrame:CGRectMake(self.bounds.size.width,
+                                                                          self.bounds.origin.y,
+                                                                          self.bounds.size.width,
+                                                                          self.bounds.size.height - 36)];
+    lblDescription.backgroundColor = [UIColor clearColor];
+    lblDescription.textColor = [UIColor whiteColor];
+    lblDescription.numberOfLines = 0;
+    lblDescription.font = [UIFont systemFontOfSize:14.0f];
+    lblDescription.textAlignment = NSTextAlignmentCenter;
+    [scrollView addSubview:lblDescription];
+    self.lblDescription = lblDescription;
+    UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.bounds.origin.x,
+                                                                                 self.bounds.size.height - 36,
+                                                                                 self.bounds.size.width, 36)];
+    pageControl.currentPage = 0;
+    pageControl.numberOfPages = 2;
+    [pageControl addTarget:self
+                    action:@selector(changePage:)
+          forControlEvents:UIControlEventValueChanged];
+    [self addSubview:pageControl];
+    self.pageControl = pageControl;
 }
 
-- (void)prepareForReuse
+- (void)changePage:(id)sender
 {
-    [super prepareForReuse];
-    if (self.blurView) {
-        [self.blurView removeFromSuperview];
-    }
+    NSInteger page = self.pageControl.currentPage;
+    CGRect bounds = self.scrollView.bounds;
+    bounds.origin.x = CGRectGetWidth(bounds) * page;
+    bounds.origin.y = 0;
+    [self.scrollView scrollRectToVisible:bounds
+                                animated:YES];
 }
+
+#pragma mark - Public Methods
 
 - (void)setImageURL:(NSURL *)imageURL
 {
@@ -64,64 +125,21 @@
     self.imgViewMedia.frame = offsetFrame;
 }
 
-#pragma mark - Public Methods
+#pragma mark - UIScrollViewDelegate
 
-- (void)toggleDetails
+-(void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
-    if (self.blurView) {
-        [self removeBlurView];
-    } else {
-        [self addBlurView];
-    }
+    float alpha = (320 - scrollView.contentOffset.x) / 320;
+    alpha = (alpha < 0 ? 0 : alpha > 1 ? 1 : alpha);
+    self.opaqueBackground.alpha = 1 - alpha;
 }
 
-#pragma mark - Private Methods
-
-- (void)addBlurView
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    FXBlurView *blurView = [[FXBlurView alloc] initWithFrame:CGRectMake(0,
-                                                                        self.bounds.size.height,
-                                                                        self.bounds.size.width,
-                                                                        self.bounds.size.height/3 * 2)];
-    [blurView setTintColor:[UIColor clearColor]];
-    blurView.blurRadius = 40;
-    self.blurView = blurView;
-    [self addSubview:blurView];
-    THRLabel *lblDetails = [[THRLabel alloc]
-                            initWithFrame:CGRectMake(0,
-                                                     0,
-                                                     self.bounds.size.width,
-                                                     self.bounds.size.height/3 * 2)];
-    lblDetails.text = self.details;
-    lblDetails.font = [UIFont systemFontOfSize:13.0f];
-    lblDetails.numberOfLines = 0;
-    lblDetails.shadowColor = [UIColor colorWithHexString:@"#4A4A4A"];
-    lblDetails.shadowOffset = CGSizeMake(1, 1);
-    [lblDetails setTextColor:[UIColor colorWithHexString:@"#5856D6"]];
-    [self.blurView addSubview:lblDetails];
-    [UIView animateWithDuration:0.35
-                     animations:^{
-                         self.blurView.frame = CGRectMake(0,
-                                                          self.bounds.size.height/3,
-                                                          self.bounds.size.width,
-                                                          self.bounds.size.height/3 * 2);
-                     }];
-}
-
-- (void)removeBlurView
-{
-    [UIView animateWithDuration:0.35
-                     animations:^{
-                         self.blurView.frame = CGRectMake(0,
-                                                          self.bounds.size.height,
-                                                          self.bounds.size.width,
-                                                          self.bounds.size.height/3 * 2);
-                     }
-                     completion:^(BOOL finished) {
-                         if (finished) {
-                             [self.blurView removeFromSuperview];
-                         }
-                     }];
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    float fractionalPage = self.scrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    self.pageControl.currentPage = page;
 }
 
 @end

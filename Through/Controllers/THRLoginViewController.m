@@ -27,6 +27,8 @@
 
 @implementation THRLoginViewController
 
+#pragma mark - Controller Life Cycle
+
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
 {
