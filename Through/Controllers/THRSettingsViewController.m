@@ -8,6 +8,7 @@
 
 #import "THRSettingsViewController.h"
 #import "THRDeveloperViewController.h"
+#import "THRLoginViewController.h"
 #import "iLink.h"
 
 @interface THRSettingsViewController ()
@@ -15,6 +16,10 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (NSString *)titleForIndexPath:(NSIndexPath *)indexPath;
+- (void)shareOnFacebook;
+- (void)shareOnTwitter;
+- (void)rateOnAppStore;
+- (void)logOut;
 
 @end
 
@@ -146,6 +151,19 @@ static NSString *cellIdentifier = @"THRSettingTableViewCell";
     return @"";
 }
 
+- (void)logOut
+{
+    [PFUser logOut];
+    THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
+                                                   initWithNibName:nil
+                                                   bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:loginViewController];
+    [self presentViewController:navigationController
+                       animated:YES
+                     completion:nil];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -206,6 +224,7 @@ titleForHeaderInSection:(NSInteger)section
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
                 case 1:
+                    [self logOut];
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
             }
