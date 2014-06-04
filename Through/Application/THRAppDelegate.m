@@ -14,6 +14,7 @@
 @interface THRAppDelegate ()
 
 - (void)setupParseWithLaunchOptions:(NSDictionary *)launchOptions;
+- (void)configureHockeyApp;
 
 @end
 
@@ -28,6 +29,7 @@
     self.window.tintColor = [UIColor colorWithHexString:@"#C644FC"];
     [self.window makeKeyAndVisible];
     [self setupParseWithLaunchOptions:launchOptions];
+    [self configureHockeyApp];
     PFUser *user = [PFUser currentUser];
     if (!user) {
         THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
@@ -53,13 +55,34 @@
     return YES;
 }
 
-#pragma mark -
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    if( [[[BITHockeyManager sharedHockeyManager] authenticator] handleOpenURL:url
+                                                            sourceApplication:sourceApplication
+                                                                   annotation:annotation]) {
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - Private Methods
 
 - (void)setupParseWithLaunchOptions:(NSDictionary *)launchOptions
 {
     [Parse setApplicationId:@"13M9oMhAklF3jK9XjjVZ8cHa4qOwQZqYFM6CiXLL"
                   clientKey:@"o5A6XY0VXa7I1RggWh0kTKnZ31zHLzHLeTd2odJV"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+}
+
+- (void)configureHockeyApp
+{
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"3e59b63c4adac1640b02a562931dbd57"];
+    [[[BITHockeyManager sharedHockeyManager] authenticator] setIdentificationType:BITAuthenticatorIdentificationTypeDevice];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[[BITHockeyManager sharedHockeyManager] authenticator] authenticateInstallation];
 }
 
 @end

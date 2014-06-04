@@ -223,10 +223,12 @@ titleForHeaderInSection:(NSInteger)section
                 case 0:
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
+                    break;
                 case 1:
                     [self logOut];
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
+                    break;
             }
             break;
         }
@@ -274,9 +276,11 @@ titleForHeaderInSection:(NSInteger)section
                 case 0:
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
+                    break;
                 case 1:
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
+                    break;
             }
             break;
         }

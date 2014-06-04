@@ -29,5 +29,6 @@
     #import <TSMessages/TSMessage.h>
     #import <Social/Social.h>
     #import <MessageUI/MessageUI.h>
+    #import <HockeySDK/HockeySDK.h>
     #include "Definitions.h"
 #endif

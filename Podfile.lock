@@ -9,6 +9,7 @@ PODS:
   - FXBlurView (1.6.1)
   - FXForms (1.1.6)
   - HexColors (2.2.1)
+  - HockeySDK (3.5.5)
   - JTSImageViewController (1.1.1)
   - libextobjc (0.4):
     - libextobjc/EXTADT
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - FXBlurView (~> 1.6.1)
   - FXForms (~> 1.1.6)
   - HexColors (~> 2.2.1)
+  - HockeySDK (~> 3.5.5)
   - JTSImageViewController (~> 1.1.1)
   - libextobjc (~> 0.4.0)
   - RegExCategories (~> 1.0.0)
@@ -92,6 +94,7 @@ SPEC CHECKSUMS:
   FXBlurView: 1d01b96076d65027314d1be024c7506c292392aa
   FXForms: 9387c60ee6f3e1c75e0f8998012acc1ce0ad8d0a
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
+  HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
   JTSImageViewController: e8167cffe5ffdb9203a8931d41ba5a4dd5ac5f5a
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
   NSData+Base64: aae92a2e3f0bd88b29fe6093551ded3f5c062548
