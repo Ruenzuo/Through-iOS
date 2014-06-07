@@ -166,7 +166,8 @@
                      [self showUnexpectedError];
                  }
              } else {
-                 if (![[user objectForKey:@"hasServiceConnected"] boolValue]) {
+                 if (![[user objectForKey:@"isFacebookServiceConnected"] boolValue] &&
+                     ![[user objectForKey:@"isTwitterServiceConnected"] boolValue]) {
                      [self showConnectViewController];
                  } else {
                      [self showFeedViewController];
@@ -192,6 +193,10 @@
         user.username = form.email;
         user.password = form.password;
         user.email = form.email;
+        [user setObject:[NSNumber numberWithBool:NO]
+                 forKey:@"isFacebookServiceConnected"];
+        [user setObject:[NSNumber numberWithBool:NO]
+                 forKey:@"isTwitterServiceConnected"];
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
             @strongify(self);

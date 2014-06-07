@@ -30,9 +30,21 @@
 				<string>ha3e59b63c4adac1640b02a562931dbd57</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb481818645282078</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>0.0.2</string>
+	<key>FacebookAppID</key>
+	<string>481818645282078</string>
+	<key>FacebookDisplayName</key>
+	<string>Through</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

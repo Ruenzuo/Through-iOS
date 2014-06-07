@@ -69,7 +69,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
                                                  action:@selector(cellSelected:)];
     [self.collectionView addGestureRecognizer:gestureRecognizer];
     if ([self.feed count] == 0) {
-        PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
+        PFQuery *query = [PFQuery queryWithClassName:@"Media"];
         [query whereKey:@"user" equalTo:[PFUser currentUser]];
         [query orderByDescending:@"mediaDate"];
         [query setLimit:50];
@@ -160,7 +160,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     
     UIRefreshControl *refreshControl = (UIRefreshControl *)sender;
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Media"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     if ([self.feed count] != 0) {
         PFObject *lastFeed = self.feed[0];
@@ -198,7 +198,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 {
     @weakify(self);
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TwitterMedia"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Media"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     PFObject *oldestFeed = self.feed.lastObject;
     [query whereKey:@"mediaDate" lessThan:[oldestFeed objectForKey:@"mediaDate"]];

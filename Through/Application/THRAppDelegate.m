@@ -15,6 +15,7 @@
 
 - (void)setupParseWithLaunchOptions:(NSDictionary *)launchOptions;
 - (void)configureHockeyApp;
+- (void)configureOAuth;
 
 @end
 
@@ -30,6 +31,7 @@
     [self.window makeKeyAndVisible];
     [self setupParseWithLaunchOptions:launchOptions];
     [self configureHockeyApp];
+    [self configureOAuth];
     PFUser *user = [PFUser currentUser];
     if (!user) {
         THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
@@ -37,7 +39,8 @@
                                                        bundle:nil];
         self.viewController = loginViewController;
     } else {
-        if (![[user objectForKey:@"hasServiceConnected"] boolValue]) {
+        if (![[user objectForKey:@"isFacebookServiceConnected"] boolValue] &&
+            ![[user objectForKey:@"isTwitterServiceConnected"] boolValue]) {
             THRConnectViewController *connectViewController = [[THRConnectViewController alloc]
                                                                initWithNibName:nil
                                                                bundle:nil];
@@ -65,7 +68,9 @@
                                                                    annotation:annotation]) {
         return YES;
     }
-    return NO;
+    BOOL wasHandled = [FBAppCall handleOpenURL:url
+                             sourceApplication:sourceApplication];
+    return wasHandled;
 }
 
 #pragma mark - Private Methods
@@ -83,6 +88,14 @@
     [[[BITHockeyManager sharedHockeyManager] authenticator] setIdentificationType:BITAuthenticatorIdentificationTypeDevice];
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[[BITHockeyManager sharedHockeyManager] authenticator] authenticateInstallation];
+}
+
+- (void)configureOAuth
+{
+    SimpleAuth.configuration[@"twitter"] = @{
+                                             @"consumer_key" : kTwitterOAuthConsumerKey,
+                                             @"consumer_secret" : kTwitterOAuthConsumerSecret
+                                            };
 }
 
 @end

@@ -12,11 +12,13 @@
 @interface THRConnectViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign, getter = isTwitterConnected) BOOL twitterConnected;
+@property (nonatomic, assign, getter = isFacebookConnected) BOOL facebookConnected;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) UIBarButtonItem *btnDone;
-@property (nonatomic, strong) NSArray *twitterFeed;
 
+- (NSString *)titleForIndexPath:(NSIndexPath *)indexPath;
 - (void)connectTwitter;
+- (void)connectFacebook;
 - (void)done:(id)sender;
 
 @end
@@ -62,7 +64,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -71,11 +73,20 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
     
     UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
                                                                      forIndexPath:indexPath];
-    if (indexPath.row == 0 && self.isTwitterConnected) {
-        tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        tableViewCell.accessoryType = UITableViewCellAccessoryNone;
+    if (indexPath.row == 0) {
+        if (self.isTwitterConnected) {
+            tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            tableViewCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    } else if (indexPath.row == 1) {
+        if (self.isFacebookConnected) {
+            tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            tableViewCell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
+    tableViewCell.textLabel.text = [self titleForIndexPath:indexPath];
     return tableViewCell;
 }
 
@@ -87,24 +98,38 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                                   animated:YES];
     switch (indexPath.row) {
         case 0: {
-            if (![[[PFUser currentUser] objectForKey:@"hasServiceConnected"] boolValue]) {
+            if (![[PFUser currentUser] objectForKey:@"twitterOAuth"]) {
                 [self connectTwitter];
+            }
+            break;
+        }
+        case 1: {
+            if (![[PFUser currentUser] objectForKey:@"facebookOAuth"]) {
+                [self connectFacebook];
             }
             break;
         }
     }
 }
 
-#pragma mark - Public Methods
+#pragma mark - Private Methods
+
+- (NSString *)titleForIndexPath:(NSIndexPath *)indexPath
+{
+    switch ([indexPath row]) {
+        case 0:
+            return @"Twitter";
+        case 1:
+            return @"Facebook";
+        default:
+            return @"";
+    }
+}
 
 - (void)connectTwitter
 {
     @weakify(self);
     
-    SimpleAuth.configuration[@"twitter"] = @{
-                                             @"consumer_key" : kTwitterOAuthConsumerKey,
-                                             @"consumer_secret" : kTwitterOAuthConsumerSecret
-                                            };
     [SimpleAuth
      authorize:@"twitter"
      completion:^(id responseObject, NSError *error) {
@@ -134,39 +159,83 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                  } else {
                      PFUser *user = [PFUser currentUser];
                      [user setObject:[NSNumber numberWithBool:YES]
-                              forKey:@"hasServiceConnected"];
+                              forKey:@"isTwitterServiceConnected"];
                      [user saveInBackground];
-                     [PFCloud
-                      callFunctionInBackground:@"generateFeedsForUser"
-                      withParameters:@{@"username": [user objectForKey:@"username"]}
-                      block:^(NSArray *results, NSError *error) {
-                          if (error) {
-                              //TODO: Handle error.
-                          } else {
-                              [SVProgressHUD dismiss];
-                              self.twitterConnected = YES;
-                              self.btnDone.enabled = YES;
-                              self.twitterFeed = results;
-                              [self.tableView reloadData];
-                          }
-                      }];
+                     [SVProgressHUD dismiss];
+                     self.twitterConnected = YES;
+                     self.btnDone.enabled = YES;
+                     [self.tableView reloadData];
                  }
              }];
          }
     }];
 }
 
+- (void)connectFacebook
+{
+    @weakify(self);
+    
+    [FBSession
+     openActiveSessionWithReadPermissions:@[]
+     allowLoginUI:YES
+     completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+         
+         @strongify(self);
+         
+         if (error) {
+             //TODO: Handle error.
+         } else {
+             PFObject *facebookOAuth = [PFObject objectWithClassName:@"FacebookOAuth"];
+             [facebookOAuth setObject:[[session accessTokenData] accessToken]
+                               forKey:@"token"];
+             [facebookOAuth setObject:[PFUser currentUser]
+                               forKey:@"user"];
+             [SVProgressHUD showWithStatus:@"Connecting"
+                                  maskType:SVProgressHUDMaskTypeBlack];
+             [facebookOAuth saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                 if (error) {
+                     //TODO: Handle error.
+                 } else {
+                     PFUser *user = [PFUser currentUser];
+                     [user setObject:[NSNumber numberWithBool:YES]
+                              forKey:@"isFacebookServiceConnected"];
+                     [user saveInBackground];
+                     [SVProgressHUD dismiss];
+                     self.facebookConnected = YES;
+                     self.btnDone.enabled = YES;
+                     [self.tableView reloadData];
+                 }
+             }];
+         }
+
+     }];
+    
+}
+
 - (void)done:(id)sender
 {
-    THRFeedViewController *feedViewController = [[THRFeedViewController alloc]
-                                                 initWithNibName:nil
-                                                 bundle:nil];
-    [feedViewController.feed addObjectsFromArray:self.twitterFeed];
-    UINavigationController *navigationController = [[UINavigationController alloc]
-                                                    initWithRootViewController:feedViewController];
-    [self presentViewController:navigationController
-                       animated:YES
-                     completion:nil];
+    PFUser *user = [PFUser currentUser];
+    [SVProgressHUD showWithStatus:@"Getting feed"
+                         maskType:SVProgressHUDMaskTypeBlack];
+    [PFCloud
+     callFunctionInBackground:@"generateFeedsForUser"
+     withParameters:@{@"username": [user objectForKey:@"username"]}
+     block:^(NSArray *results, NSError *error) {
+         if (error) {
+             //TODO: Handle error.
+         } else {
+             [SVProgressHUD dismiss];
+             THRFeedViewController *feedViewController = [[THRFeedViewController alloc]
+                                                          initWithNibName:nil
+                                                          bundle:nil];
+             [feedViewController.feed addObjectsFromArray:results];
+             UINavigationController *navigationController = [[UINavigationController alloc]
+                                                             initWithRootViewController:feedViewController];
+             [self presentViewController:navigationController
+                                animated:YES
+                              completion:nil];
+         }
+     }];
 }
 
 @end
