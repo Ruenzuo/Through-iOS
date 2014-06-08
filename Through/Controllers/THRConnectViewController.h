@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const THRUserDidDisconnectedServicesNotification;
+extern NSString * const THRUserDidConnectedServicesNotification;
+
 @interface THRConnectViewController : UIViewController
+
+@property (nonatomic, assign) BOOL shouldAllowDisconnect;
 
 @end

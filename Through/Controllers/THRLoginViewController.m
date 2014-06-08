@@ -119,6 +119,7 @@
     THRConnectViewController *connectViewController = [[THRConnectViewController alloc]
                                                        initWithNibName:nil
                                                        bundle:nil];
+    connectViewController.shouldAllowDisconnect = NO;
     UINavigationController *navigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:connectViewController];
     [self presentViewController:navigationController

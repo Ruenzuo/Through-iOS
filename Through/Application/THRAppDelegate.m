@@ -44,6 +44,7 @@
             THRConnectViewController *connectViewController = [[THRConnectViewController alloc]
                                                                initWithNibName:nil
                                                                bundle:nil];
+            connectViewController.shouldAllowDisconnect = NO;
             self.viewController = connectViewController;
         } else {
             THRFeedViewController *feedViewController = [[THRFeedViewController alloc]

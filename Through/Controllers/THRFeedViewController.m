@@ -9,6 +9,7 @@
 #import "THRFeedViewController.h"
 #import "THRMediaCollectionViewCell.h"
 #import "THRSettingsViewController.h"
+#import "THRConnectViewController.h"
 
 @interface THRFeedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -20,6 +21,8 @@
 - (void)goToSettings:(id)sender;
 - (void)insertMedia:(NSArray *)media;
 - (NSString *)serviceNameForMediaType:(THRMediaType)type;
+- (void)onUserDidDisconnectedServices:(NSNotification *)notification;
+- (void)onUserDidConnectedServices:(NSNotification *)notification;
 
 @end
 
@@ -42,12 +45,25 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     @weakify(self);
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onUserDidDisconnectedServices:)
+                                                 name:THRUserDidDisconnectedServicesNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onUserDidConnectedServices:)
+                                                 name:THRUserDidConnectedServicesNotification
+                                               object:nil];
     UIBarButtonItem *btnSettings = [[UIBarButtonItem alloc]
                                     initWithImage:[UIImage imageNamed:@"Settings"]
                                     style:UIBarButtonItemStyleBordered
@@ -93,6 +109,47 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 }
 
 #pragma mark - Private Methods
+
+- (void)onUserDidDisconnectedServices:(NSNotification *)notification
+{
+    @weakify(self);
+    
+    [self.feed removeAllObjects];
+    [self.collectionView reloadData];
+    PFQuery *query = [PFQuery queryWithClassName:@"Media"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query orderByDescending:@"mediaDate"];
+    [query setLimit:50];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        @strongify(self);
+        
+        if (error) {
+            //TODO: Handle error.
+        } else {
+            [self.feed addObjectsFromArray:objects];
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
+- (void)onUserDidConnectedServices:(NSNotification *)notification
+{
+    [self.feed removeAllObjects];
+    [self.collectionView reloadData];
+    PFUser *user = [PFUser currentUser];
+    [PFCloud
+     callFunctionInBackground:@"generateFeedsForUser"
+     withParameters:@{@"username": [user objectForKey:@"username"]}
+     block:^(NSArray *results, NSError *error) {
+         if (error) {
+             //TODO: Handle error.
+         } else {
+             [self.feed addObjectsFromArray:results];
+             [self.collectionView reloadData];
+         }
+     }];
+}
 
 - (void)cellSelected:(UITapGestureRecognizer *)gestureRecognizer
 {

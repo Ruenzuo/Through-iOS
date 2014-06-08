@@ -10,6 +10,7 @@
 #import "THRDeveloperViewController.h"
 #import "THRLoginViewController.h"
 #import "iLink.h"
+#import "THRConnectViewController.h"
 
 @interface THRSettingsViewController ()
 
@@ -221,6 +222,10 @@ titleForHeaderInSection:(NSInteger)section
         case 0: {
             switch (indexPath.row) {
                 case 0:
+                    controller = [[THRConnectViewController alloc]
+                                  initWithNibName:nil
+                                  bundle:nil];
+                    ((THRConnectViewController *)controller).shouldAllowDisconnect = YES;
                     [self.tableView deselectRowAtIndexPath:indexPath
                                                   animated:YES];
                     break;

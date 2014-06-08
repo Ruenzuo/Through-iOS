@@ -9,10 +9,11 @@
 #import "THRConnectViewController.h"
 #import "THRFeedViewController.h"
 
+NSString * const THRUserDidDisconnectedServicesNotification = @"THRUserDidDisconnectedServicesNotification";
+NSString * const THRUserDidConnectedServicesNotification = @"THRUserDidConnectedServicesNotification";
+
 @interface THRConnectViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, assign, getter = isTwitterConnected) BOOL twitterConnected;
-@property (nonatomic, assign, getter = isFacebookConnected) BOOL facebookConnected;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) UIBarButtonItem *btnDone;
 
@@ -20,6 +21,9 @@
 - (void)connectTwitter;
 - (void)connectFacebook;
 - (void)done:(id)sender;
+- (void)disconnectTwitter;
+- (void)disconnectFacebook;
+- (void)refreshDoneButton;
 
 @end
 
@@ -34,7 +38,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
 {
     if (self = [super initWithNibName:nibNameOrNil
                                bundle:nibBundleOrNil]) {
-        self.title = @"Connect";
+        self.shouldAllowDisconnect = NO;
     }
     return self;
 }
@@ -42,17 +46,24 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.shouldAllowDisconnect) {
+        self.title = @"Services";
+    } else {
+        self.title = @"Connect";
+    }
     [self.tableView registerNib:[UINib nibWithNibName:@"THRServiceTableViewCell"
                                                bundle:nil]
          forCellReuseIdentifier:cellIdentifier];
-    UIBarButtonItem *btnDone = [[UIBarButtonItem alloc]
-                                initWithImage:[UIImage imageNamed:@"Done"]
-                                style:UIBarButtonItemStyleBordered
-                                target:self
-                                action:@selector(done:)];
-    self.navigationItem.rightBarButtonItem = btnDone;
-    btnDone.enabled = NO;
-    self.btnDone = btnDone;
+    if (!self.shouldAllowDisconnect) {
+        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc]
+                                    initWithImage:[UIImage imageNamed:@"Done"]
+                                    style:UIBarButtonItemStyleBordered
+                                    target:self
+                                    action:@selector(done:)];
+        self.navigationItem.rightBarButtonItem = btnDone;
+        btnDone.enabled = NO;
+        self.btnDone = btnDone;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,14 +84,15 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
     
     UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
                                                                      forIndexPath:indexPath];
+    PFUser *currentUser = [PFUser currentUser];
     if (indexPath.row == 0) {
-        if (self.isTwitterConnected) {
+        if ([[currentUser objectForKey:@"isTwitterServiceConnected"] boolValue]) {
             tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             tableViewCell.accessoryType = UITableViewCellAccessoryNone;
         }
     } else if (indexPath.row == 1) {
-        if (self.isFacebookConnected) {
+        if ([[currentUser objectForKey:@"isFacebookServiceConnected"] boolValue]) {
             tableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             tableViewCell.accessoryType = UITableViewCellAccessoryNone;
@@ -98,14 +110,18 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                                   animated:YES];
     switch (indexPath.row) {
         case 0: {
-            if (![[PFUser currentUser] objectForKey:@"twitterOAuth"]) {
+            if (![[[PFUser currentUser] objectForKey:@"isTwitterServiceConnected"] boolValue]) {
                 [self connectTwitter];
+            } else if (self.shouldAllowDisconnect) {
+                [self disconnectTwitter];
             }
             break;
         }
         case 1: {
-            if (![[PFUser currentUser] objectForKey:@"facebookOAuth"]) {
+            if (![[[PFUser currentUser] objectForKey:@"isFacebookServiceConnected"] boolValue]) {
                 [self connectFacebook];
+            } else if (self.shouldAllowDisconnect) {
+                [self disconnectFacebook];
             }
             break;
         }
@@ -113,6 +129,17 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
 }
 
 #pragma mark - Private Methods
+
+- (void)refreshDoneButton
+{
+    PFUser *currentUser = [PFUser currentUser];
+    if ([[currentUser objectForKey:@"isTwitterServiceConnected"] boolValue] ||
+        [[currentUser objectForKey:@"isFacebookServiceConnected"] boolValue]) {
+        self.btnDone.enabled = YES;
+    } else {
+        self.btnDone.enabled = NO;
+    }
+}
 
 - (NSString *)titleForIndexPath:(NSIndexPath *)indexPath
 {
@@ -124,6 +151,62 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
         default:
             return @"";
     }
+}
+
+- (void)disconnectTwitter
+{
+    @weakify(self);
+    
+    PFUser *user = [PFUser currentUser];
+    [SVProgressHUD showWithStatus:@"Disconnecting"
+                         maskType:SVProgressHUDMaskTypeBlack];
+    [PFCloud
+     callFunctionInBackground:@"disconnectTwitterForUser"
+     withParameters:@{@"username": [user objectForKey:@"username"]}
+     block:^(NSArray *results, NSError *error) {
+         
+         @strongify(self);
+         
+         if (error) {
+             //TODO: Handle error.
+         } else {
+             [user setObject:[NSNumber numberWithBool:NO]
+                      forKey:@"isTwitterServiceConnected"];
+             [self.tableView reloadData];
+             [SVProgressHUD showSuccessWithStatus:@"Twitter account disconnected."];
+             [[NSNotificationCenter defaultCenter]
+              postNotificationName:THRUserDidDisconnectedServicesNotification
+              object:nil];
+         }
+     }];
+}
+
+- (void)disconnectFacebook
+{
+    @weakify(self);
+    
+    PFUser *user = [PFUser currentUser];
+    [SVProgressHUD showWithStatus:@"Disconnecting"
+                         maskType:SVProgressHUDMaskTypeBlack];
+    [PFCloud
+     callFunctionInBackground:@"disconnectFacebookForUser"
+     withParameters:@{@"username": [user objectForKey:@"username"]}
+     block:^(NSArray *results, NSError *error) {
+         
+         @strongify(self);
+         
+         if (error) {
+             //TODO: Handle error.
+         } else {
+             [user setObject:[NSNumber numberWithBool:NO]
+                      forKey:@"isFacebookServiceConnected"];
+             [self.tableView reloadData];
+             [SVProgressHUD showSuccessWithStatus:@"Facebook account disconnected."];
+             [[NSNotificationCenter defaultCenter]
+              postNotificationName:THRUserDidDisconnectedServicesNotification
+              object:nil];
+         }
+     }];
 }
 
 - (void)connectTwitter
@@ -162,9 +245,11 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                               forKey:@"isTwitterServiceConnected"];
                      [user saveInBackground];
                      [SVProgressHUD dismiss];
-                     self.twitterConnected = YES;
-                     self.btnDone.enabled = YES;
+                     [self refreshDoneButton];
                      [self.tableView reloadData];
+                     [[NSNotificationCenter defaultCenter]
+                      postNotificationName:THRUserDidConnectedServicesNotification
+                      object:nil];
                  }
              }];
          }
@@ -201,9 +286,11 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                               forKey:@"isFacebookServiceConnected"];
                      [user saveInBackground];
                      [SVProgressHUD dismiss];
-                     self.facebookConnected = YES;
-                     self.btnDone.enabled = YES;
+                     [self refreshDoneButton];
                      [self.tableView reloadData];
+                     [[NSNotificationCenter defaultCenter]
+                      postNotificationName:THRUserDidConnectedServicesNotification
+                      object:nil];
                  }
              }];
          }
