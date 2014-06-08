@@ -19,6 +19,7 @@
 - (void)refreshOlder;
 - (void)goToSettings:(id)sender;
 - (void)insertMedia:(NSArray *)media;
+- (NSString *)serviceNameForMediaType:(THRMediaType)type;
 
 @end
 
@@ -220,6 +221,18 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     }];
 }
 
+- (NSString *)serviceNameForMediaType:(THRMediaType)type
+{
+    switch (type) {
+        case THRMediaTypeNone:
+            return @"";
+        case THRMediaTypeTwitter:
+            return @"Twitter";
+        case THRMediaTypeFacebook:
+            return @"Facebook";
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -237,7 +250,8 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     PFObject *media = self.feed[indexPath.row];
     cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
     NSDate *date = [media objectForKey:@"mediaDate"];
-    cell.lblDescription.text = [NSString stringWithFormat:@"%@ on Twitter (%@ ago):\n%@", [media objectForKey:@"userName"], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
+    NSNumber *type = [media objectForKey:@"type"];
+    cell.lblDescription.text = [NSString stringWithFormat:@"%@ on %@ (%@ ago):\n%@", [media objectForKey:@"userName"], [self serviceNameForMediaType:[type integerValue]], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
     if (indexPath.row == self.feed.count - 1 && self.shouldRefreshOlder) {

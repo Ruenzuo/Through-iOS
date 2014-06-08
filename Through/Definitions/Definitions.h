@@ -8,3 +8,9 @@
 
 #define kTwitterOAuthConsumerKey @"K7G3qi30RXciGattuJ1cBdoNG"
 #define kTwitterOAuthConsumerSecret @"kNyT6OtLzNYB9uspygHnhWx11nXXs0oDDf9rD5E2RkzlW6EFPo"
+
+typedef NS_ENUM(NSUInteger, THRMediaType) {
+    THRMediaTypeNone,
+    THRMediaTypeTwitter,
+    THRMediaTypeFacebook
+};
