@@ -251,7 +251,13 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     cell.imageURL = [NSURL URLWithString:[media objectForKey:@"url"]];
     NSDate *date = [media objectForKey:@"mediaDate"];
     NSNumber *type = [media objectForKey:@"type"];
-    cell.lblDescription.text = [NSString stringWithFormat:@"%@ on %@ (%@ ago):\n%@", [media objectForKey:@"userName"], [self serviceNameForMediaType:[type integerValue]], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
+    NSString *text = [media objectForKey:@"text"];
+    if ([[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+         isEqualToString:@""]) {
+        cell.lblDescription.text = [NSString stringWithFormat:@"%@ on %@ (%@ ago)", [media objectForKey:@"userName"], [self serviceNameForMediaType:[type integerValue]], [date shortTimeAgoSinceNow]];
+    } else {
+        cell.lblDescription.text = [NSString stringWithFormat:@"%@ on %@ (%@ ago):\n%@", [media objectForKey:@"userName"], [self serviceNameForMediaType:[type integerValue]], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
+    }
     CGFloat yOffset = ((self.collectionView.contentOffset.y - cell.frame.origin.y) / IMAGE_HEIGHT) * IMAGE_OFFSET_SPEED;
     cell.imageOffset = CGPointMake(0.0f, yOffset);
     if (indexPath.row == self.feed.count - 1 && self.shouldRefreshOlder) {
