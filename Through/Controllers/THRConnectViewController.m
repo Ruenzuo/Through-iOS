@@ -172,6 +172,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          } else {
              [user setObject:[NSNumber numberWithBool:NO]
                       forKey:@"isTwitterServiceConnected"];
+             [user saveInBackground];
              [self.tableView reloadData];
              [SVProgressHUD showSuccessWithStatus:@"Twitter account disconnected."];
              [[NSNotificationCenter defaultCenter]
@@ -185,6 +186,9 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
 {
     @weakify(self);
     
+    if (FBSession.activeSession.isOpen) {
+        [FBSession.activeSession closeAndClearTokenInformation];
+    }
     PFUser *user = [PFUser currentUser];
     [SVProgressHUD showWithStatus:@"Disconnecting"
                          maskType:SVProgressHUDMaskTypeBlack];
@@ -200,6 +204,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          } else {
              [user setObject:[NSNumber numberWithBool:NO]
                       forKey:@"isFacebookServiceConnected"];
+             [user saveInBackground];
              [self.tableView reloadData];
              [SVProgressHUD showSuccessWithStatus:@"Facebook account disconnected."];
              [[NSNotificationCenter defaultCenter]
@@ -270,6 +275,9 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          if (error) {
              //TODO: Handle error.
          } else {
+             if (status == FBSessionStateClosed) {
+                 return;
+             }
              PFObject *facebookOAuth = [PFObject objectWithClassName:@"FacebookOAuth"];
              [facebookOAuth setObject:[[session accessTokenData] accessToken]
                                forKey:@"token"];
