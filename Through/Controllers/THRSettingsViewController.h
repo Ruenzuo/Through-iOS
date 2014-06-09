@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THRSettingsViewController : UIViewController
+@interface THRSettingsViewController : GAITrackedViewController
 
 @end

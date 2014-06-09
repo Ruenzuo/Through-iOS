@@ -108,6 +108,12 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.screenName = @"Feed Screen";
+}
+
 #pragma mark - Private Methods
 
 - (void)onUserDidDisconnectedServices:(NSNotification *)notification

@@ -16,6 +16,7 @@
 - (void)setupParseWithLaunchOptions:(NSDictionary *)launchOptions;
 - (void)configureHockeyApp;
 - (void)configureOAuth;
+- (void)configureGoogleAnalytics;
 
 @end
 
@@ -32,6 +33,7 @@
     [self setupParseWithLaunchOptions:launchOptions];
     [self configureHockeyApp];
     [self configureOAuth];
+    [self configureGoogleAnalytics];
     PFUser *user = [PFUser currentUser];
     if (!user) {
         THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
@@ -97,6 +99,11 @@
                                              @"consumer_key" : kTwitterOAuthConsumerKey,
                                              @"consumer_secret" : kTwitterOAuthConsumerSecret
                                             };
+}
+
+- (void)configureGoogleAnalytics
+{
+    [[GAI sharedInstance] trackerWithTrackingId:kGoogleAnalyticsTrackingID];
 }
 
 @end

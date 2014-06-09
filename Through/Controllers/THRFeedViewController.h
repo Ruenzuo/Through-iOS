@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THRFeedViewController : UIViewController
+@interface THRFeedViewController : GAITrackedViewController
 
 @property (nonatomic, strong) NSMutableArray *feed;
 

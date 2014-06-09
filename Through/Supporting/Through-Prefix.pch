@@ -30,5 +30,6 @@
     #import <Social/Social.h>
     #import <MessageUI/MessageUI.h>
     #import <HockeySDK/HockeySDK.h>
+    #import <GoogleAnalytics-iOS-SDK/GAI.h>
     #include "Definitions.h"
 #endif

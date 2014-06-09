@@ -15,4 +15,5 @@ target "Through" do
   pod 'VTAcknowledgementsViewController', '~> 0.11.0'
   pod 'TSMessages', '~> 0.9.9'
   pod 'HockeySDK', '~> 3.5.5'
+  pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
 end

@@ -54,8 +54,10 @@ static NSString *cellIdentifier = @"THRSettingTableViewCell";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow]
                                   animated:YES];
+    self.screenName = @"Settings Screen";
 }
 
 #pragma mark - Private Methods

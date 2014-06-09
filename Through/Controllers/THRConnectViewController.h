@@ -11,7 +11,7 @@
 extern NSString * const THRUserDidDisconnectedServicesNotification;
 extern NSString * const THRUserDidConnectedServicesNotification;
 
-@interface THRConnectViewController : UIViewController
+@interface THRConnectViewController : GAITrackedViewController
 
 @property (nonatomic, assign) BOOL shouldAllowDisconnect;
 

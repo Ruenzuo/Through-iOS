@@ -47,6 +47,12 @@ static NSString *cellIdentifier = @"THRDeveloperInfoTableViewCell";
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.screenName = @"Developer Screen";
+}
+
 #pragma mark - Private Methods
 
 - (NSString *)titleForIndexPath:(NSIndexPath *)indexPath

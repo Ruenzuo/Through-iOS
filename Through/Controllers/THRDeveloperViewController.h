@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface THRDeveloperViewController : UIViewController
+@interface THRDeveloperViewController : GAITrackedViewController
 
 @end
