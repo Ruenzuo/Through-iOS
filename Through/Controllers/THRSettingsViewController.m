@@ -11,6 +11,8 @@
 #import "THRLoginViewController.h"
 #import "iLink.h"
 #import "THRConnectViewController.h"
+#import "THRPrivacyPolicyViewController.h"
+#import "THRTermsOfUseViewController.h"
 
 @interface THRSettingsViewController ()
 
@@ -281,12 +283,12 @@ titleForHeaderInSection:(NSInteger)section
         case 3: {
             switch (indexPath.row) {
                 case 0:
-                    [self.tableView deselectRowAtIndexPath:indexPath
-                                                  animated:YES];
+                    controller = [[THRTermsOfUseViewController alloc] initWithNibName:nil
+                                                                               bundle:nil];
                     break;
                 case 1:
-                    [self.tableView deselectRowAtIndexPath:indexPath
-                                                  animated:YES];
+                    controller = [[THRPrivacyPolicyViewController alloc] initWithNibName:nil
+                                                                                  bundle:nil];
                     break;
             }
             break;

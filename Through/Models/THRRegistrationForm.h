@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class THRPrivacyPolicyViewController;
+@class THRTermsOfUseViewController;
+
 @interface THRRegistrationForm : NSObject <FXForm>
 
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *repeatPassword;
+@property (nonatomic, readonly) THRPrivacyPolicyViewController *privacyPolicy;
+@property (nonatomic, readonly) THRTermsOfUseViewController *termsOfUse;
+@property (nonatomic, assign) BOOL agreedToTerms;
 
 @end

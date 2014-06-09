@@ -39,6 +39,8 @@
 		3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */; };
 		3FC6B5DC193A1C7F00D57D1E /* THRRegistrationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6B5DB193A1C7F00D57D1E /* THRRegistrationForm.m */; };
 		779F853A7D4C4B3D8FFCF522 /* libPods-Through.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */; };
+		A04B93091945D663007770F0 /* THRPrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04B93081945D663007770F0 /* THRPrivacyPolicyViewController.m */; };
+		A04B930C1945DEEC007770F0 /* THRTermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04B930B1945DEEC007770F0 /* THRTermsOfUseViewController.m */; };
 		A05D6A66193E339A00C0F67E /* THRSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A65193E339A00C0F67E /* THRSettingsViewController.xib */; };
 		A05D6A6A193E35C800C0F67E /* THRSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A69193E35C800C0F67E /* THRSettingTableViewCell.xib */; };
 		A05D6A6E193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A6D193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist */; };
@@ -96,6 +98,10 @@
 		3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRRootForm.m; path = Models/THRRootForm.m; sourceTree = "<group>"; };
 		3FC6B5DA193A1C7F00D57D1E /* THRRegistrationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRRegistrationForm.h; path = Models/THRRegistrationForm.h; sourceTree = "<group>"; };
 		3FC6B5DB193A1C7F00D57D1E /* THRRegistrationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRRegistrationForm.m; path = Models/THRRegistrationForm.m; sourceTree = "<group>"; };
+		A04B93071945D663007770F0 /* THRPrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRPrivacyPolicyViewController.h; path = Controllers/THRPrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		A04B93081945D663007770F0 /* THRPrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRPrivacyPolicyViewController.m; path = Controllers/THRPrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		A04B930A1945DEEC007770F0 /* THRTermsOfUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRTermsOfUseViewController.h; path = Controllers/THRTermsOfUseViewController.h; sourceTree = "<group>"; };
+		A04B930B1945DEEC007770F0 /* THRTermsOfUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRTermsOfUseViewController.m; path = Controllers/THRTermsOfUseViewController.m; sourceTree = "<group>"; };
 		A05D6A65193E339A00C0F67E /* THRSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRSettingsViewController.xib; path = Views/THRSettingsViewController.xib; sourceTree = "<group>"; };
 		A05D6A69193E35C800C0F67E /* THRSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRSettingTableViewCell.xib; path = Views/THRSettingTableViewCell.xib; sourceTree = "<group>"; };
 		A05D6A6D193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Through-acknowledgements.plist"; path = "Pods/Pods-Through-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
@@ -251,6 +257,10 @@
 				3FB3EA46193CD787001ABEED /* THRSettingsViewController.m */,
 				A05D6A72193E3CA100C0F67E /* THRDeveloperViewController.h */,
 				A05D6A73193E3CA100C0F67E /* THRDeveloperViewController.m */,
+				A04B93071945D663007770F0 /* THRPrivacyPolicyViewController.h */,
+				A04B93081945D663007770F0 /* THRPrivacyPolicyViewController.m */,
+				A04B930A1945DEEC007770F0 /* THRTermsOfUseViewController.h */,
+				A04B930B1945DEEC007770F0 /* THRTermsOfUseViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -414,6 +424,7 @@
 			files = (
 				3FB3EA41193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m in Sources */,
 				3F06CF1519388F7B006B8EC0 /* main.m in Sources */,
+				A04B930C1945DEEC007770F0 /* THRTermsOfUseViewController.m in Sources */,
 				3FC6B5D6193A16FA00D57D1E /* THRLoginForm.m in Sources */,
 				3FB3EA44193CC51C001ABEED /* THRLabel.m in Sources */,
 				3FB3EA3D193C87B7001ABEED /* THRMediaCollectionViewCell.m in Sources */,
@@ -424,6 +435,7 @@
 				A05D6A7C193E44B700C0F67E /* iLink.m in Sources */,
 				A05D6A74193E3CA100C0F67E /* THRDeveloperViewController.m in Sources */,
 				3FC6B5D9193A1C4900D57D1E /* THRRootForm.m in Sources */,
+				A04B93091945D663007770F0 /* THRPrivacyPolicyViewController.m in Sources */,
 				3F07556119389B9E00AF1C4D /* THRConnectViewController.m in Sources */,
 				3FC6B5DC193A1C7F00D57D1E /* THRRegistrationForm.m in Sources */,
 			);

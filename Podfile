@@ -16,4 +16,5 @@ target "Through" do
   pod 'TSMessages', '~> 0.9.9'
   pod 'HockeySDK', '~> 3.5.5'
   pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
+  pod 'SVWebViewController', '~> 1.0'
 end

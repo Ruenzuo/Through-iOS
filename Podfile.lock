@@ -66,6 +66,7 @@ PODS:
     - cocoa-oauth
     - SimpleAuth/Core
   - SVProgressHUD (1.0)
+  - SVWebViewController (1.0)
   - TSMessages (0.9.9):
     - HexColors
   - VTAcknowledgementsViewController (0.11)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.6.0)
   - SimpleAuth/Twitter (~> 0.3.2)
   - SVProgressHUD (~> 1.0.0)
+  - SVWebViewController (~> 1.0)
   - TSMessages (~> 0.9.9)
   - VTAcknowledgementsViewController (~> 0.11.0)
 
@@ -106,6 +108,7 @@ SPEC CHECKSUMS:
   SDWebImage: c6989652c1cdf27cbdf3f56957e2030f825af5bc
   SimpleAuth: ae531fc2986b34e6fb6975885b0e42cf86bcc918
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
+  SVWebViewController: fbf917baa92744c54cfb89a52a4c056e409973a4
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
   VTAcknowledgementsViewController: 6e71652adbe73c68f0a278a73ac9ca1e1fc00b90
 

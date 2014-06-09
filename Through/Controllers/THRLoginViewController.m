@@ -189,6 +189,8 @@
         [self showRegistrationErrorWithMessage:@"Password is not valid. Must be between 6 and 20 characters and contain at least one numeric digit."];
     } else if (![self validateSignUpPasswordMatch]) {
         [self showRegistrationErrorWithMessage:@"Passwords don't match."];
+    } else if (!form.agreedToTerms) {
+        [self showRegistrationErrorWithMessage:@"Please, agreed to terms in order to create an account."];
     } else {
         PFUser *user = [PFUser user];
         user.username = form.email;

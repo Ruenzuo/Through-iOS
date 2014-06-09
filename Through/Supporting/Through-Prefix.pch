@@ -31,5 +31,6 @@
     #import <MessageUI/MessageUI.h>
     #import <HockeySDK/HockeySDK.h>
     #import <GoogleAnalytics-iOS-SDK/GAI.h>
+    #import <SVWebViewController/SVWebViewController.h>
     #include "Definitions.h"
 #endif

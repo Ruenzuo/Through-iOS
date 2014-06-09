@@ -10,14 +10,16 @@
 
 @implementation THRRegistrationForm
 
-- (NSArray *)extraFields
+- (NSArray *)fields
 {
     return @[
-             @{
-                 FXFormFieldTitle: @"Create an account",
-                 FXFormFieldHeader: @"",
-                 FXFormFieldAction: @"signUp"
-                 }
+             @"email",
+             @"password",
+             @"repeatPassword",
+             @{FXFormFieldKey: @"privacyPolicy", FXFormFieldHeader: @"Legal"},
+             @"termsOfUse",
+             @"agreedToTerms",
+             @{FXFormFieldTitle: @"Create an account", FXFormFieldHeader: @"", FXFormFieldAction: @"signUp"}
              ];
 }
 
