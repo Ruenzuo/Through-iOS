@@ -87,10 +87,9 @@
 
 - (void)configureHockeyApp
 {
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"3e59b63c4adac1640b02a562931dbd57"];
-    [[[BITHockeyManager sharedHockeyManager] authenticator] setIdentificationType:BITAuthenticatorIdentificationTypeDevice];
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:kHockeyAppID];
     [[BITHockeyManager sharedHockeyManager] startManager];
-    [[[BITHockeyManager sharedHockeyManager] authenticator] authenticateInstallation];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
 - (void)configureOAuth
