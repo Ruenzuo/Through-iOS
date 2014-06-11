@@ -272,7 +272,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
     @weakify(self);
     
     [FBSession
-     openActiveSessionWithReadPermissions:@[@"read_stream"]
+     openActiveSessionWithReadPermissions:@[@"user_photos"]
      allowLoginUI:YES
      completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
          
