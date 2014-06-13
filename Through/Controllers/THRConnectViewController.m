@@ -174,7 +174,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          @strongify(self);
          
          if (error) {
-             //TODO: Handle error.
+             [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
          } else {
              [user setObject:[NSNumber numberWithBool:NO]
                       forKey:@"isTwitterServiceConnected"];
@@ -206,7 +206,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          @strongify(self);
          
          if (error) {
-             //TODO: Handle error.
+             [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
          } else {
              [user setObject:[NSNumber numberWithBool:NO]
                       forKey:@"isFacebookServiceConnected"];
@@ -231,7 +231,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          @strongify(self);
          
          if (error) {
-             //TODO: Handle error.
+             [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
          } else {
              PFObject *twitterOAuth = [PFObject objectWithClassName:@"TwitterOAuth"];
              NSDictionary *credentials = [responseObject objectForKey:@"credentials"];
@@ -249,7 +249,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                                   maskType:SVProgressHUDMaskTypeBlack];
              [twitterOAuth saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                  if (error) {
-                     //TODO: Handle error.
+                     [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
                  } else {
                      PFUser *user = [PFUser currentUser];
                      [user setObject:[NSNumber numberWithBool:YES]
@@ -279,7 +279,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
          @strongify(self);
          
          if (error) {
-             //TODO: Handle error.
+             [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
          } else {
              if (status == FBSessionStateClosed) {
                  return;
@@ -293,7 +293,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
                                   maskType:SVProgressHUDMaskTypeBlack];
              [facebookOAuth saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                  if (error) {
-                     //TODO: Handle error.
+                     [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
                  } else {
                      PFUser *user = [PFUser currentUser];
                      [user setObject:[NSNumber numberWithBool:YES]
@@ -323,7 +323,7 @@ static NSString *cellIdentifier = @"THRServiceTableViewCell";
      withParameters:@{@"username": [user objectForKey:@"username"]}
      block:^(NSArray *results, NSError *error) {
          if (error) {
-             //TODO: Handle error.
+             [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
          } else {
              [SVProgressHUD dismiss];
              THRFeedViewController *feedViewController = [[THRFeedViewController alloc]

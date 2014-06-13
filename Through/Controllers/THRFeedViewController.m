@@ -95,7 +95,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
             @strongify(self);
             
             if (error) {
-                //TODO: Handle error.
+                [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
             } else {
                 [self insertMedia:objects];
             }
@@ -131,7 +131,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
         @strongify(self);
         
         if (error) {
-            //TODO: Handle error.
+            [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
         } else {
             [self.feed addObjectsFromArray:objects];
             [self.collectionView reloadData];
@@ -141,6 +141,8 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
 
 - (void)onUserDidConnectedServices:(NSNotification *)notification
 {
+    @weakify(self);
+    
     [self.feed removeAllObjects];
     [self.collectionView reloadData];
     PFUser *user = [PFUser currentUser];
@@ -148,8 +150,11 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
      callFunctionInBackground:@"generateFeedsForUser"
      withParameters:@{@"username": [user objectForKey:@"username"]}
      block:^(NSArray *results, NSError *error) {
+         
+         @strongify(self);
+         
          if (error) {
-             //TODO: Handle error.
+             [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
          } else {
              [self.feed addObjectsFromArray:results];
              [self.collectionView reloadData];
@@ -237,7 +242,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
         @strongify(self);
         
         if (error) {
-            //TODO: Handle error.
+            [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
             [refreshControl endRefreshing];
         } else if ([objects count] == 0) {
             [PFCloud
@@ -246,7 +251,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
              block:^(NSArray *results, NSError *error) {
                  [refreshControl endRefreshing];
                  if (error) {
-                     //TODO: Handle error.
+                     [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
                  } else {
                      [self insertMedia:results];
                  }
@@ -273,7 +278,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
         @strongify(self);
         
         if (error) {
-            //TODO: Handle error.
+            [SVProgressHUD showErrorWithStatus:@"There was an error with this request, please try again later."];
         } else if ([objects count] == 0) {
             [SVProgressHUD showErrorWithStatus:@"Can't find more items."];
             self.shouldRefreshOlder = NO;

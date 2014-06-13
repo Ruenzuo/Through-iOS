@@ -26,6 +26,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    @weakify(self);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.tintColor = [UIColor colorWithHexString:@"#C644FC"];
@@ -35,6 +37,33 @@
     [self configureOAuth];
     [self configureGoogleAnalytics];
     PFUser *user = [PFUser currentUser];
+    [user refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
+        @strongify(self);
+        
+        if (error) {
+            if ([error code] == 101) {
+                [PFUser logOut];
+                THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
+                                                               initWithNibName:nil
+                                                               bundle:nil];
+                UINavigationController *navigationController = [[UINavigationController alloc]
+                                                                initWithRootViewController:loginViewController];
+                [self.viewController
+                 presentViewController:navigationController
+                 animated:YES
+                 completion:^{
+                     [TSMessage
+                      showNotificationInViewController:navigationController
+                      title:@"Error"
+                      subtitle:@"Your account has been deleted, please contact support."
+                      type:TSMessageNotificationTypeError
+                      duration:3.0f
+                      canBeDismissedByUser:YES];
+                 }];
+            }
+        }
+    }];
     if (!user) {
         THRLoginViewController *loginViewController = [[THRLoginViewController alloc]
                                                        initWithNibName:nil
@@ -80,8 +109,8 @@
 
 - (void)setupParseWithLaunchOptions:(NSDictionary *)launchOptions
 {
-    [Parse setApplicationId:@"13M9oMhAklF3jK9XjjVZ8cHa4qOwQZqYFM6CiXLL"
-                  clientKey:@"o5A6XY0VXa7I1RggWh0kTKnZ31zHLzHLeTd2odJV"];
+    [Parse setApplicationId:kParseApplicationID
+                  clientKey:kParseClientKey];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 }
 

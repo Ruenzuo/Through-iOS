@@ -66,44 +66,56 @@ static NSString *cellIdentifier = @"THRSettingTableViewCell";
 
 - (void)shareOnFacebook
 {
-    SLComposeViewController *facebookStatus = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [facebookStatus setInitialText:@"Check Through in the AppStore!"];
-    [facebookStatus addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
-    [self presentViewController:facebookStatus
-                       animated:YES
-                     completion:nil];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookStatus = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebookStatus setInitialText:@"Check Through in the AppStore!"];
+        [facebookStatus addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
+        [self presentViewController:facebookStatus
+                           animated:YES
+                         completion:nil];
+    } else {
+        [TSMessage
+         showNotificationInViewController:self
+         title:@"Error"
+         subtitle:@"It seems that you don't have a Facebook account configured."
+         type:TSMessageNotificationTypeError
+         duration:3.0f
+         canBeDismissedByUser:YES];
+    }
 }
 
 - (void)shareOnTwitter
 {
     ACAccountStore *accountStore = [[ACAccountStore alloc] init];
     ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [accountStore requestAccessToAccountsWithType:accountType
-                                          options:nil
-                                       completion:^(BOOL granted, NSError *error) {
-                                           if(granted) {
-                                               NSArray *accounts = [accountStore accountsWithAccountType:accountType];
-                                               if ([accounts count] > 0) {
-                                                   SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-                                                   [tweetSheet setInitialText:@"Check Through in the AppStore!"];
-                                                   [tweetSheet addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
-                                                   [self presentViewController:tweetSheet
-                                                                      animated:YES
-                                                                    completion:nil];
-                                               }
-                                               else {
-                                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                                       [TSMessage
-                                                        showNotificationInViewController:self
-                                                        title:@"Error"
-                                                        subtitle:@"It seems that you don't have a Twitter account configured."
-                                                        type:TSMessageNotificationTypeError
-                                                        duration:3.0f
-                                                        canBeDismissedByUser:YES];
-                                                   });
-                                               }
-                                           }
-                                       }];
+    [accountStore
+     requestAccessToAccountsWithType:accountType
+     options:nil
+     completion:^(BOOL granted, NSError *error) {
+         if(granted) {
+             NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+             if ([accounts count] > 0) {
+                 SLComposeViewController *tweetSheet = [SLComposeViewController
+                                                        composeViewControllerForServiceType:SLServiceTypeTwitter];
+                 [tweetSheet setInitialText:@"Check Through in the AppStore!"];
+                 [tweetSheet addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
+                 [self presentViewController:tweetSheet
+                                    animated:YES
+                                  completion:nil];
+             }
+             else {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [TSMessage
+                      showNotificationInViewController:self
+                      title:@"Error"
+                      subtitle:@"It seems that you don't have a Twitter account configured."
+                      type:TSMessageNotificationTypeError
+                      duration:3.0f
+                      canBeDismissedByUser:YES];
+                 });
+             }
+         }
+     }];
 }
 
 - (void)rateOnAppStore
