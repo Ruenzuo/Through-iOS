@@ -563,7 +563,7 @@
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Through/Supporting/Through-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "894100E3-2CC8-478D-B017-F0E761EA13E7";
+				PROVISIONING_PROFILE = "D96F38F4-3866-4F1D-BD53-C2820B2C6A66";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
