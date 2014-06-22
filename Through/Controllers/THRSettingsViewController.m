@@ -68,7 +68,7 @@ static NSString *cellIdentifier = @"THRSettingTableViewCell";
 {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *facebookStatus = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [facebookStatus setInitialText:@"Check Through in the AppStore!"];
+        [facebookStatus setInitialText:@"Check Through on the AppStore!"];
         [facebookStatus addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
         [self presentViewController:facebookStatus
                            animated:YES
