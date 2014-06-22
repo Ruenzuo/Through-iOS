@@ -320,8 +320,7 @@ static NSString *cellIdentifier = @"THRMediaCollectionViewCell";
     NSDate *date = [media objectForKey:@"mediaDate"];
     NSNumber *type = [media objectForKey:@"type"];
     NSString *text = [media objectForKey:@"text"];
-    if ([[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
-         isEqualToString:@""]) {
+    if (text == nil) {
         cell.lblDescription.text = [NSString stringWithFormat:@"%@ on %@ (%@ ago)", [media objectForKey:@"userName"], [self serviceNameForMediaType:[type integerValue]], [date shortTimeAgoSinceNow]];
     } else {
         cell.lblDescription.text = [NSString stringWithFormat:@"%@ on %@ (%@ ago):\n%@", [media objectForKey:@"userName"], [self serviceNameForMediaType:[type integerValue]], [date shortTimeAgoSinceNow], [media objectForKey:@"text"]];
