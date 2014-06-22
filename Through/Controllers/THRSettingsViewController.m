@@ -68,7 +68,7 @@ static NSString *cellIdentifier = @"THRSettingTableViewCell";
 {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *facebookStatus = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [facebookStatus setInitialText:@"Check Through in the AppStore!"];
+        [facebookStatus setInitialText:@"Check Through on the AppStore!"];
         [facebookStatus addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
         [self presentViewController:facebookStatus
                            animated:YES
@@ -97,7 +97,7 @@ static NSString *cellIdentifier = @"THRSettingTableViewCell";
              if ([accounts count] > 0) {
                  SLComposeViewController *tweetSheet = [SLComposeViewController
                                                         composeViewControllerForServiceType:SLServiceTypeTwitter];
-                 [tweetSheet setInitialText:@"Check Through in the AppStore!"];
+                 [tweetSheet setInitialText:@"Check Through on the AppStore!"];
                  [tweetSheet addURL:[[iLink sharedInstance] iLinkGetAppURLforSharing]];
                  [self presentViewController:tweetSheet
                                     animated:YES
