@@ -113,7 +113,8 @@
 
 - (void)setImageURL:(NSURL *)imageURL
 {
-    [self.imgViewMedia setImageWithURL:imageURL];
+    [self.imgViewMedia setImageWithURL:imageURL
+                      placeholderImage:[UIImage imageNamed:@"Placeholder"]];
     [self setImageOffset:self.imageOffset];
 }
 
