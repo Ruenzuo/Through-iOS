@@ -3,7 +3,7 @@ Through-iOS
 
 __Description:__  
 
-Through is an iPhone application that simplify the way you browse photos on social networks. Connect your Twitter and Facebook accounts and see all your photos in one place.
+Through is an iOS and Android application that simplify the way you browse photos on social networks. Connect your Twitter and Facebook accounts and see all your photos in one place.
 
 ![through-ios-screenshot-1](https://dl.dropboxusercontent.com/u/12352209/GitHub/through-ios-screenshot-1.png)&nbsp;
 ![through-ios-screenshot-2](https://dl.dropboxusercontent.com/u/12352209/GitHub/through-ios-screenshot-2.png)
