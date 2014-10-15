@@ -29,6 +29,7 @@
 		3F1C4852193B9659002C7E75 /* THRConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C4851193B9659002C7E75 /* THRConnectViewController.xib */; };
 		3F1C4854193B9BE8002C7E75 /* THRServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C4853193B9BE8002C7E75 /* THRServiceTableViewCell.xib */; };
 		3F1C4856193BA070002C7E75 /* THRFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C4855193BA070002C7E75 /* THRFeedViewController.xib */; };
+		3F62AF6F19EED8BD00255543 /* Pods-Through-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F62AF6E19EED8BD00255543 /* Pods-Through-acknowledgements.plist */; };
 		3F7373D71938D9340062462F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F07555C19389A3D00AF1C4D /* Social.framework */; };
 		3FB3EA3D193C87B7001ABEED /* THRMediaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA3C193C87B7001ABEED /* THRMediaCollectionViewCell.m */; };
 		3FB3EA41193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB3EA40193C8916001ABEED /* THRMediaCollectionViewFlowLayout.m */; };
@@ -43,7 +44,6 @@
 		A04B930C1945DEEC007770F0 /* THRTermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04B930B1945DEEC007770F0 /* THRTermsOfUseViewController.m */; };
 		A05D6A66193E339A00C0F67E /* THRSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A65193E339A00C0F67E /* THRSettingsViewController.xib */; };
 		A05D6A6A193E35C800C0F67E /* THRSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A69193E35C800C0F67E /* THRSettingTableViewCell.xib */; };
-		A05D6A6E193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A6D193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist */; };
 		A05D6A74193E3CA100C0F67E /* THRDeveloperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05D6A73193E3CA100C0F67E /* THRDeveloperViewController.m */; };
 		A05D6A76193E3CB400C0F67E /* THRDeveloperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A75193E3CB400C0F67E /* THRDeveloperViewController.xib */; };
 		A05D6A78193E3EE500C0F67E /* THRDeveloperInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05D6A77193E3EE500C0F67E /* THRDeveloperInfoTableViewCell.xib */; };
@@ -51,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18704F8482F20A1525CC2217 /* Pods-Through.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Through.release.xcconfig"; path = "Pods/Target Support Files/Pods-Through/Pods-Through.release.xcconfig"; sourceTree = "<group>"; };
 		3F06CEDA19388EE8006B8EC0 /* Through.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Through.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F06CEDD19388EE8006B8EC0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F06CEDF19388EE8006B8EC0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,6 +83,7 @@
 		3F1C4851193B9659002C7E75 /* THRConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRConnectViewController.xib; path = Views/THRConnectViewController.xib; sourceTree = "<group>"; };
 		3F1C4853193B9BE8002C7E75 /* THRServiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRServiceTableViewCell.xib; path = Views/THRServiceTableViewCell.xib; sourceTree = "<group>"; };
 		3F1C4855193BA070002C7E75 /* THRFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRFeedViewController.xib; path = Views/THRFeedViewController.xib; sourceTree = "<group>"; };
+		3F62AF6E19EED8BD00255543 /* Pods-Through-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Through-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Through/Pods-Through-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		3FB3EA3B193C87B7001ABEED /* THRMediaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRMediaCollectionViewCell.h; path = Views/THRMediaCollectionViewCell.h; sourceTree = "<group>"; };
 		3FB3EA3C193C87B7001ABEED /* THRMediaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRMediaCollectionViewCell.m; path = Views/THRMediaCollectionViewCell.m; sourceTree = "<group>"; };
 		3FB3EA3F193C8916001ABEED /* THRMediaCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRMediaCollectionViewFlowLayout.h; path = Extensions/THRMediaCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -98,13 +100,13 @@
 		3FC6B5D8193A1C4900D57D1E /* THRRootForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRRootForm.m; path = Models/THRRootForm.m; sourceTree = "<group>"; };
 		3FC6B5DA193A1C7F00D57D1E /* THRRegistrationForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRRegistrationForm.h; path = Models/THRRegistrationForm.h; sourceTree = "<group>"; };
 		3FC6B5DB193A1C7F00D57D1E /* THRRegistrationForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRRegistrationForm.m; path = Models/THRRegistrationForm.m; sourceTree = "<group>"; };
+		7154D5C7D821F295CA2989B4 /* Pods-Through.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Through.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Through/Pods-Through.debug.xcconfig"; sourceTree = "<group>"; };
 		A04B93071945D663007770F0 /* THRPrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRPrivacyPolicyViewController.h; path = Controllers/THRPrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		A04B93081945D663007770F0 /* THRPrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRPrivacyPolicyViewController.m; path = Controllers/THRPrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		A04B930A1945DEEC007770F0 /* THRTermsOfUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRTermsOfUseViewController.h; path = Controllers/THRTermsOfUseViewController.h; sourceTree = "<group>"; };
 		A04B930B1945DEEC007770F0 /* THRTermsOfUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRTermsOfUseViewController.m; path = Controllers/THRTermsOfUseViewController.m; sourceTree = "<group>"; };
 		A05D6A65193E339A00C0F67E /* THRSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRSettingsViewController.xib; path = Views/THRSettingsViewController.xib; sourceTree = "<group>"; };
 		A05D6A69193E35C800C0F67E /* THRSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRSettingTableViewCell.xib; path = Views/THRSettingTableViewCell.xib; sourceTree = "<group>"; };
-		A05D6A6D193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Through-acknowledgements.plist"; path = "Pods/Pods-Through-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		A05D6A72193E3CA100C0F67E /* THRDeveloperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THRDeveloperViewController.h; path = Controllers/THRDeveloperViewController.h; sourceTree = "<group>"; };
 		A05D6A73193E3CA100C0F67E /* THRDeveloperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THRDeveloperViewController.m; path = Controllers/THRDeveloperViewController.m; sourceTree = "<group>"; };
 		A05D6A75193E3CB400C0F67E /* THRDeveloperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = THRDeveloperViewController.xib; path = Views/THRDeveloperViewController.xib; sourceTree = "<group>"; };
@@ -112,7 +114,6 @@
 		A05D6A7A193E44B700C0F67E /* iLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iLink.h; sourceTree = "<group>"; };
 		A05D6A7B193E44B700C0F67E /* iLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iLink.m; sourceTree = "<group>"; };
 		BB9C680D10AD47FF9DBA77D5 /* libPods-Through.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Through.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Through.xcconfig"; path = "Pods/Pods-Through.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +149,7 @@
 				3F06CEE319388EE8006B8EC0 /* Through */,
 				3F06CEDC19388EE8006B8EC0 /* Frameworks */,
 				3F06CEDB19388EE8006B8EC0 /* Products */,
-				D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */,
+				5E9288B7797ACC5996A48853 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,7 +201,7 @@
 		3F06CEE419388EE8006B8EC0 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				A05D6A6D193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist */,
+				3F62AF6E19EED8BD00255543 /* Pods-Through-acknowledgements.plist */,
 				3F06CF1919388F80006B8EC0 /* InfoPlist.strings */,
 				3F06CF1119388F7B006B8EC0 /* main.m */,
 				3F06CF1219388F7B006B8EC0 /* Through-Info.plist */,
@@ -305,6 +306,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		5E9288B7797ACC5996A48853 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7154D5C7D821F295CA2989B4 /* Pods-Through.debug.xcconfig */,
+				18704F8482F20A1525CC2217 /* Pods-Through.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A05D6A79193E44B700C0F67E /* iLink */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,11 +380,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A05D6A66193E339A00C0F67E /* THRSettingsViewController.xib in Resources */,
-				A05D6A6E193E3B3A00C0F67E /* Pods-Through-acknowledgements.plist in Resources */,
 				3F06CEF019388EE8006B8EC0 /* Images.xcassets in Resources */,
 				3F06CF1719388F80006B8EC0 /* InfoPlist.strings in Resources */,
 				A05D6A76193E3CB400C0F67E /* THRDeveloperViewController.xib in Resources */,
 				A05D6A78193E3EE500C0F67E /* THRDeveloperInfoTableViewCell.xib in Resources */,
+				3F62AF6F19EED8BD00255543 /* Pods-Through-acknowledgements.plist in Resources */,
 				A05D6A6A193E35C800C0F67E /* THRSettingTableViewCell.xib in Resources */,
 				3F1C4854193B9BE8002C7E75 /* THRServiceTableViewCell.xib in Resources */,
 				3F1C4852193B9659002C7E75 /* THRConnectViewController.xib in Resources */,
@@ -397,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Through-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Through/Pods-Through-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		41C4DDAF0C6441EE8A4EA7FF /* Check Pods Manifest.lock */ = {
@@ -528,7 +538,7 @@
 		};
 		3F06CF0719388EE8006B8EC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */;
+			baseConfigurationReference = 7154D5C7D821F295CA2989B4 /* Pods-Through.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -542,14 +552,14 @@
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Through/Supporting/Through-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7C069CA5-E6FC-490E-B9BF-7A168DDC8ABF";
+				PROVISIONING_PROFILE = "1f3f7c06-b035-4a2c-8695-7cd524976ed1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		3F06CF0819388EE8006B8EC0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7C909AB65AD42C5AEBE3FBB /* Pods-Through.xcconfig */;
+			baseConfigurationReference = 18704F8482F20A1525CC2217 /* Pods-Through.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -563,7 +573,7 @@
 				GCC_PREFIX_HEADER = "Through/Supporting/Through-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Through/Supporting/Through-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "894100E3-2CC8-478D-B017-F0E761EA13E7";
+				PROVISIONING_PROFILE = "D96F38F4-3866-4F1D-BD53-C2820B2C6A66";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
